@@ -21,6 +21,8 @@ spec:
               tag: 26.6.0-rootless
             env:
               PORT: &port 8000
+              AI_IS_ENABLED: true
+              AUTO_TAGGING_ENABLED: true
               APP_BASE_URL: https://papra.labx.sh
               DOCUMENTS_OCR_LANGUAGES: eng,ita,ron
               INGESTION_FOLDER_IS_ENABLED: true
