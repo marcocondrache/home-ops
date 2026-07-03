@@ -20,11 +20,9 @@ spec:
   verification:
     deep:
       schedule:
-        cron: H 5 * * 0
-        jitter: 1h
+        cron: H 5 1 * *
         timezone: Europe/Rome
     quick:
-      cron: H 5 * * *
-      jitter: 1h
+      cron: H 3 * * *
       timezone: Europe/Rome
-  volumeSnapshotClassName: ${KOPIUR_SNAPSHOTCLASS:=csi-ceph-block}
+  volumeSnapshotClassName: ${KOPIUR_SNAPSHOTCLASS:=csi-ceph-blockpool}
