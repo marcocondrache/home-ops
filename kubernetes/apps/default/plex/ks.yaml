@@ -8,6 +8,7 @@ spec:
   components:
     - ../../../../components/zeroscaler
     - ../../../../components/volsync
+    - ../../../../components/kopiur
   dependsOn:
     - name: k8s-gpu-dra-driver
       namespace: kube-system

@@ -6,8 +6,9 @@ metadata:
   name: zigbee
 spec:
   components:
-    - ../../../../components/volsync
     - ../../../../components/zeroscaler
+    - ../../../../components/volsync
+    - ../../../../components/kopiur
   dependsOn:
     - name: rook-ceph-cluster
       namespace: rook-ceph
