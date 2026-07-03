@@ -17,12 +17,12 @@ spec:
   sources:
     - pvc:
         name: ${APP}
-  # verification:
-  #   deep:
-  #     schedule:
-  #       cron: H 5 1 * *
-  #       timezone: Europe/Rome
-  #   quick:
-  #     cron: H 3 * * *
-  #     timezone: Europe/Rome
+  verification:
+    deep:
+      schedule:
+        cron: H 5 1 * *
+        timezone: Europe/Rome
+    quick:
+      cron: H 3 * * *
+      timezone: Europe/Rome
   volumeSnapshotClassName: ${KOPIUR_SNAPSHOTCLASS:=csi-ceph-blockpool}
