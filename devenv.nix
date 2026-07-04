@@ -5,6 +5,7 @@
 }:
 let
   pwd = config.env.DEVENV_ROOT;
+  krew = "${config.env.DEVENV_STATE}/.krew";
 in
 {
   name = "hive";
@@ -13,6 +14,7 @@ in
   stdenv = pkgs.stdenvNoCC;
 
   env = {
+    "KREW_ROOT" = krew;
     "HELM_PLUGINS" = config.env.DEVENV_PROFILE;
     "MINIJINJA_CONFIG_FILE" = "${pwd}/.minijinja.toml";
     "KUBECONFIG" = "${pwd}/kubeconfig";
@@ -21,11 +23,18 @@ in
     "ROOT_DIR" = "${pwd}";
   };
 
+  enterShell = ''
+    mkdir -p "${krew}/bin"
+    ln -sf ${pkgs.krew}/bin/krew "${krew}/bin/kubectl-krew"
+    export PATH="${krew}/bin:$PATH"
+  '';
+
   packages = [
     pkgs.oxfmt
     pkgs.helmfile
     pkgs._1password-cli
     pkgs.kubectl
+    pkgs.krew
     pkgs.fluxcd
     pkgs.kubernetes-helm
     pkgs.kubernetes-helmPlugins.helm-diff
@@ -38,7 +47,6 @@ in
     pkgs.just
     pkgs.gum
     pkgs.kustomize
-    pkgs.kubectl-node-shell
     pkgs.vals
   ];
 }
