@@ -18,7 +18,7 @@ spec:
           app:
             image:
               repository: ghcr.io/marcocondrache/dpc-exporter
-              tag: 1.0.0@sha256:4f9b5aa723c898a45d13b3571ee9c0ab547a18270101ae650181c8f2bd1b1081
+              tag: 1.0.1@sha256:b30e8511c1e6ae48acd5e0a9dd8269f6d73d093f869b8eba34a8d8c384d0d3ce
             env:
               RADIUS_KM: "5"
               TZ: Europe/Rome
