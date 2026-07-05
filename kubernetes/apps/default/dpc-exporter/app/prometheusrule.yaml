@@ -10,7 +10,7 @@ spec:
       rules:
         - alert: DpcHailApproaching
           expr: |-
-            dpc_hail_probability{scope="area"} > 0.5
+            dpc_hail_probability{scope="area"} > 0.4
           for: 0m
           annotations:
             summary: >-
