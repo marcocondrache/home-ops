@@ -11,6 +11,7 @@ spec:
   interval: 1h
   values:
     controller:
+      replicaCount: 2
       extraVolumes:
         - name: repo
           nfs:
@@ -44,5 +45,4 @@ spec:
       fsGroup: 1000
       fsGroupChangePolicy: OnRootMismatch
     webhook:
-      serviceMonitor:
-        enabled: true
+      replicaCount: 2
