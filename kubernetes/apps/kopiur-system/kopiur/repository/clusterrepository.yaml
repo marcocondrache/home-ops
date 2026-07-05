@@ -26,6 +26,8 @@ spec:
   identityDefaults:
     hostnameExpr: namespace
     usernameExpr: namespace + '-' + policyName
+  scheduleDefaults:
+      timezone: Europe/Rome
   moverDefaults:
     cache:
       capacity: 1Mi
