@@ -16,8 +16,6 @@ spec:
           path: /mnt/fast/kopiur
   create:
     enabled: true
-  credentialProjection:
-    allowed: true
   encryption:
     passwordSecretRef:
       name: kopiur-nas-secret
