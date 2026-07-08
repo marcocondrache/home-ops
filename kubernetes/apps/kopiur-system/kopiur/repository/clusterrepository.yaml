@@ -23,15 +23,3 @@ spec:
       key: KOPIA_PASSWORD
   scheduleDefaults:
       timezone: Europe/Rome
-  moverDefaults:
-    cache:
-      capacity: 1Mi
-      mode: Ephemeral
-      storageClassName: openebs-hostpath
-    podSecurityContext:
-      fsGroup: 1000
-      fsGroupChangePolicy: OnRootMismatch
-    securityContext:
-      runAsUser: 1000
-      runAsGroup: 1000
-    ttlSecondsAfterFinished: 300
