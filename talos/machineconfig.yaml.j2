@@ -56,6 +56,10 @@ machine:
       - name: thunderbolt
       - name: thunderbolt_net
       - name: dm_thin_pool
+      - name: drbd_transport_tcp
+      - name: drbd
+        parameters:
+          - usermode_helper=disabled
   kubelet:
     defaultRuntimeSeccompProfileEnabled: true
     disableManifestsDirectory: true
