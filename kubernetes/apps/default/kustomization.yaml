@@ -19,7 +19,6 @@ resources:
   - ./zigbee/ks.yaml
   - ./mosquitto/ks.yaml
   - ./home-assistant/ks.yaml
-  - ./mailkeep/ks.yaml
   - ./papra/ks.yaml
   # - ./lubelogger/ks.yaml
   - ./plex/ks.yaml
