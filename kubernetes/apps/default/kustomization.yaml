@@ -12,6 +12,7 @@ resources:
   - ./namespace.yaml
   - ./atuin/ks.yaml
   - ./bazarr/ks.yaml
+  - ./bichon/ks.yaml
   - ./deduparr/ks.yaml
   - ./dpc-exporter/ks.yaml
   - ./recyclarr/ks.yaml
