@@ -1,11 +1,13 @@
 ---
 customization:
   extraKernelArgs:
+    - -selinux
     - amd_iommu=off # PCI Passthrough
     - iommu=pt # PCI Passthrough
     - amd_pstate=active # AMD P-State
     - thunderbolt.host_reset=0 # Thunderbolt NICs
     - talos.dashboard.disabled=1
+    - talos.auditd.disabled=1
   systemExtensions:
     officialExtensions:
       - siderolabs/amdgpu
