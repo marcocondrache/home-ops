@@ -1,0 +1,94 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: mailkeep
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: mailkeep
+  values:
+    controllers:
+      mailkeep:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/szinn/mailkeep
+              tag: v0.1.10@sha256:b0e5ab38cd5b388196423aec87bf041b04c2f0f1be3ff190195ade8e8b4eee87
+            env:
+              TZ: Europe/Rome
+              RUST_LOG: INFO
+              MAILKEEP__FRONTEND__BASE_URL: https://mailkeep.labx.sh
+              MAILKEEP__METADATA_PATH: /data
+              MAILKEEP__STORAGE_PATH: /storage
+            envFrom:
+              - secretRef:
+                  name: mailkeep-secret
+            probes:
+              liveness:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /healthz
+                    port: &port 8080
+                  failureThreshold: 3
+                  periodSeconds: 10
+              readiness:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /readyz
+                    port: *port
+                  failureThreshold: 3
+                  periodSeconds: 10
+            resources:
+              requests:
+                cpu: 10m
+                memory: 128Mi
+              limits:
+                memory: 512Mi
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities:
+                drop:
+                  - ALL
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+    service:
+      app:
+        ports:
+          http:
+            port: *port
+    route:
+      app:
+        hostnames:
+          - mailkeep.labx.sh
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+    persistence:
+      data:
+        existingClaim: "{{ .Release.Name }}"
+        advancedMounts:
+          mailkeep:
+            app:
+              - path: /data
+                subPath: data
+              - path: /storage
+                subPath: storage
+      tmp:
+        type: emptyDir
+        globalMounts:
+          - path: /tmp
