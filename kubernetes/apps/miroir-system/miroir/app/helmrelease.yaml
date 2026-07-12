@@ -10,6 +10,18 @@ spec:
     name: miroir
   interval: 1h
   values:
+    replicaCount: 1
+    monitoring:
+      dashboards:
+        enabled: true
+        grafanaOperator:
+          enabled: true
+          matchLabels:
+            dashboards: grafana
+      podMonitor:
+        enabled: true
+      prometheusRule:
+        enabled: true
     nodes:
       queen:
         backend: lvmthin
