@@ -10,4 +10,4 @@ resources:
   - ./namespace.yaml
   - ./llmkube/ks.yaml
   - ./litellm/ks.yaml
-  - ./memini/ks.yaml
+  # - ./memini/ks.yaml
