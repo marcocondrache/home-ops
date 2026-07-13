@@ -20,11 +20,11 @@ spec:
               repository: ghcr.io/open-webui/open-webui
               tag: v0.10.2@sha256:9fcea9c6e32ab60b0498f3986c6cdf651ddbe61db48d2213a3d28048ddd673d4
             env:
-              # Features
               ENABLE_OLLAMA_API: false
               ENABLE_OPENAI_API: false
               ENABLE_SIGNUP: false
-              # Websockets (in-memory, single replica)
+              RAG_WEB_SEARCH_ENGINE: searxng
+              SEARXNG_QUERY_URL: http://searxng.default.svc.cluster.local:8080/search?q=<query>
               ENABLE_WEBSOCKET_SUPPORT: true
               WEBSOCKET_MANAGER: redis
               WEBSOCKET_REDIS_URL: redis://open-webui-dragonfly:6379
@@ -49,4 +49,5 @@ spec:
       app:
         ports:
           http:
+            appProtocol: kubernetes.io/ws
             port: 8080
