@@ -34,3 +34,4 @@ resources:
   - ./n8n/ks.yaml
   # - ./tvarr/ks.yaml
   - ./chaski/ks.yaml
+  - ./open-webui/ks.yaml

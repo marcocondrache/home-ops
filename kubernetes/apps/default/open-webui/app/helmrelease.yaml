@@ -1,0 +1,50 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: open-webui
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: open-webui
+  interval: 30m
+  values:
+    controllers:
+      open-webui:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/open-webui/open-webui
+              tag: v0.10.2@sha256:9fcea9c6e32ab60b0498f3986c6cdf651ddbe61db48d2213a3d28048ddd673d4
+            env:
+              # Features
+              ENABLE_OLLAMA_API: false
+              ENABLE_OPENAI_API: false
+              ENABLE_SIGNUP: false
+              # Websockets (in-memory, single replica)
+              ENABLE_WEBSOCKET_SUPPORT: true
+            resources:
+              requests:
+                cpu: 100m
+              limits:
+                memory: 2Gi
+    persistence:
+      config:
+        existingClaim: "{{ .Release.Name }}"
+        globalMounts:
+          - path: /app/backend/data
+    route:
+      app:
+        hostnames:
+          - chat.labx.sh
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+    service:
+      app:
+        ports:
+          http:
+            port: 8080
