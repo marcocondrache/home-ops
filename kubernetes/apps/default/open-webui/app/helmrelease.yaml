@@ -26,6 +26,8 @@ spec:
               ENABLE_SIGNUP: false
               # Websockets (in-memory, single replica)
               ENABLE_WEBSOCKET_SUPPORT: true
+              WEBSOCKET_MANAGER: redis
+              WEBSOCKET_REDIS_URL: redis://open-webui-dragonfly:6379
             resources:
               requests:
                 cpu: 100m
