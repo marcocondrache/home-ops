@@ -28,7 +28,11 @@ spec:
     success_callback:
       - prometheus
     prometheus_adapter: true
-    cache: false
+    cache: true
+    cache_params:
+      type: redis
+      host: os.environ/REDIS_HOST
+      port: os.environ/REDIS_PORT
     drop_params: true
     merge_reasoning_content_in_choices: true
   env:
@@ -36,6 +40,10 @@ spec:
       value: INFO
     - name: LITELLM_MODE
       value: PRODUCTION
+    - name: REDIS_HOST
+      value: litellm-dragonfly.ai.svc.cluster.local
+    - name: REDIS_PORT
+      value: "6379"
     - name: DISABLE_ADMIN_UI
       value: "true"
     - name: LITELLM_MASTER_KEY

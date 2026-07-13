@@ -21,10 +21,17 @@ kind: Kustomization
 metadata:
   name: litellm-proxy
 spec:
+  components:
+    - ../../../../components/dragonfly
   dependsOn:
     - name: litellm
+    - name: dragonfly
+      namespace: dragonfly-system
   interval: 1h
   path: ./kubernetes/apps/ai/litellm/proxy
+  postBuild:
+    substitute:
+      APP: litellm
   prune: true
   sourceRef:
     kind: GitRepository
