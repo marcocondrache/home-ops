@@ -36,6 +36,8 @@ spec:
       value: INFO
     - name: LITELLM_MODE
       value: PRODUCTION
+    - name: DISABLE_ADMIN_UI
+      value: "true"
     - name: LITELLM_MASTER_KEY
       valueFrom:
         secretKeyRef:
