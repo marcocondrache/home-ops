@@ -5,6 +5,9 @@ kind: Kustomization
 metadata:
   name: searxng
 spec:
+  dependsOn:
+    - name: dragonfly-cluster
+      namespace: dragonfly-system
   interval: 1h
   path: ./kubernetes/apps/default/searxng/app
   postBuild:
