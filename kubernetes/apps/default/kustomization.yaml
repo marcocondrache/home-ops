@@ -35,3 +35,4 @@ resources:
   # - ./tvarr/ks.yaml
   - ./chaski/ks.yaml
   - ./open-webui/ks.yaml
+  - ./searxng/ks.yaml
