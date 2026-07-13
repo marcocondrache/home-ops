@@ -28,7 +28,7 @@ spec:
             env:
               SEARXNG_BASE_URL: https://search.labx.sh
               SEARXNG_PORT: &httpPort 8080
-              SEARXNG_VALKEY_URL: "redis://dragonfly.dragonfly-system.svc.cluster.local:6379/0"
+              SEARXNG_VALKEY_URL: "redis://searxng-dragonfly:6379"
             envFrom:
               - secretRef:
                   name: searxng-secret

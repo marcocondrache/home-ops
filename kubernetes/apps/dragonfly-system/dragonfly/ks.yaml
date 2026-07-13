@@ -19,21 +19,3 @@ spec:
     namespace: flux-system
   targetNamespace: dragonfly-system
   wait: true
----
-# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/kustomize.toolkit.fluxcd.io/kustomization_v1.json
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: dragonfly-cluster
-spec:
-  dependsOn:
-    - name: dragonfly
-  interval: 1h
-  path: ./kubernetes/apps/dragonfly-system/dragonfly/cluster
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-    namespace: flux-system
-  targetNamespace: dragonfly-system
-  wait: true
