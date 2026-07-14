@@ -17,13 +17,11 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/huggingface/chat-ui-db
-              tag: 0.20.0@sha256:42f28a74d8333353eefd8691de95dda0925ce359725d67128082ef76fa59cd3a
+              repository: ghcr.io/huggingface/chat-ui
+              tag: latest@sha256:1cdfd271535842fea85f93742b995836396b7211fc1c2180f2a3e7f953050199
             env:
               TZ: Europe/Rome
               PORT: &port 3000
-              # ponytail: chat-ui-db bundles mongod at localhost; MONGODB_URL is
-              # preset in the image, only the OpenAI-compatible endpoint is wired up.
               OPENAI_BASE_URL: http://litellm.ai.svc.cluster.local:4000/v1
               OPENAI_API_KEY:
                 valueFrom:
@@ -42,6 +40,7 @@ spec:
                   periodSeconds: 10
             securityContext:
               allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
             resources:
               requests:
