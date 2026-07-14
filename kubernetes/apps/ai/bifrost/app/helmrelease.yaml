@@ -20,6 +20,15 @@ spec:
       persistence:
         enabled: true
         existingClaim: bifrost
+    vectorStore:
+      enabled: true
+      type: redis
+      redis:
+        enabled: false
+        external:
+          enabled: true
+          host: "bifrost-dragonfly.ai.svc.cluster.local"
+          port: 6379
     bifrost:
       host: "::"
       authConfig:
