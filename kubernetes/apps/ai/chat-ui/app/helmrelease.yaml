@@ -22,6 +22,7 @@ spec:
             env:
               TZ: Europe/Rome
               PORT: &port 3000
+              MONGO_STORAGE_PATH: /data/db
               OPENAI_BASE_URL: http://litellm.ai.svc.cluster.local:4000/v1
               OPENAI_API_KEY:
                 valueFrom:
