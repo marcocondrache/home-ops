@@ -19,9 +19,7 @@ spec:
       mode: sqlite
       persistence:
         enabled: true
-        storageClass: ceph-block
-      configStore:
-        enabled: false
+        existingClaim: bifrost
     bifrost:
       host: "::"
       authConfig:

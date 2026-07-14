@@ -5,8 +5,17 @@ kind: Kustomization
 metadata:
   name: bifrost
 spec:
+  components:
+    - ../../../../components/kopiur/backup
+  dependsOn:
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
   interval: 1h
   path: ./kubernetes/apps/ai/bifrost/app
+  postBuild:
+    substitute:
+      APP: bifrost
+      KOPIUR_CAPACITY: 20Gi
   prune: true
   sourceRef:
     kind: GitRepository
