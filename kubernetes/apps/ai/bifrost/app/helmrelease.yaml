@@ -30,3 +30,5 @@ spec:
       encryptionKeySecret:
         name: bifrost
         key: BIFROST_ENCRYPTION_KEY
+      client:
+        enforceAuthOnInference: true
