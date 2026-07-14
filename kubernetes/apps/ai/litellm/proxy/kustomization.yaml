@@ -8,3 +8,12 @@ resources:
   - ./litellmmcpserver.yaml
   - ./litellmmodel.yaml
   - ./servicemonitor.yaml
+  - ./grafanadashboard.yaml
+configMapGenerator:
+  - name: litellm
+    files:
+      - ./resources/dashboard.json
+generatorOptions:
+  disableNameSuffixHash: true
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
