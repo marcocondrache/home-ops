@@ -1,0 +1,29 @@
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: bifrost
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: bifrost
+  interval: 1h
+  values:
+    image:
+      repository: mirror.gcr.io/maximhq/bifrost
+      tag: 1.6.3@sha256:95caedb1c368c6d88178c2b98b9238d8a6a62b51d9cb12b6661bf2671ed1aaa4
+
+    podSecurityContext:
+      runAsUser: 1000
+
+    storage:
+      mode: sqlite
+      persistence:
+        enabled: true
+        storageClass: ceph-block
+    bifrost:
+      host: "::"
+      encryptionKeySecret:
+        name: bifrost
+        key: BIFROST_ENCRYPTION_KEY
