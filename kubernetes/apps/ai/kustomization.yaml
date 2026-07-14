@@ -8,4 +8,5 @@ components:
   - ../../components/kopiur/secret
 resources:
   - ./namespace.yaml
+  - ./agent-sandbox/ks.yaml
   - ./bifrost/ks.yaml
