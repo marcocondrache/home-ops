@@ -13,17 +13,22 @@ spec:
     image:
       repository: mirror.gcr.io/maximhq/bifrost
       tag: v1.6.3@sha256:95caedb1c368c6d88178c2b98b9238d8a6a62b51d9cb12b6661bf2671ed1aaa4
-
     podSecurityContext:
       runAsUser: 1000
-
     storage:
       mode: sqlite
       persistence:
         enabled: true
         storageClass: ceph-block
+      configStore:
+        enabled: false
     bifrost:
       host: "::"
+      authConfig:
+        isEnabled: true
+        existingSecret: bifrost
+        usernameKey: BIFROST_ADMIN_USERNAME
+        passwordKey: BIFROST_ADMIN_PASSWORD
       encryptionKeySecret:
         name: bifrost
         key: BIFROST_ENCRYPTION_KEY
