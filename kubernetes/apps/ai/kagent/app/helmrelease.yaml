@@ -23,6 +23,8 @@ spec:
   dependsOn:
     - name: kagent-crds
   values:
+    kmcp: { enabled: false }
+    querydoc: { enabled: false }
     grafana-mcp: { enabled: false }
     kagent-tools: { enabled: false }
     k8s-agent: { enabled: false }
