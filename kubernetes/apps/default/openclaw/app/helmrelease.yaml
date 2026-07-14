@@ -14,12 +14,33 @@ spec:
       openclaw:
         annotations:
           reloader.stakater.com/auto: "true"
+        initContainers:
+          init-config:
+            image:
+              repository: ghcr.io/openclaw/openclaw
+              tag: 2026.3.1@sha256:dcf11a3a97a9b0e42dd41fcd4891533e77ff72e7b0380c743177bfbfd6f38b2d
+            command:
+              - node
+              - dist/index.js
+              - config
+              - set
+              - --batch-json
+              - >-
+                [{"path":"gateway.mode","value":"local"},
+                {"path":"gateway.bind","value":"lan"},
+                {"path":"gateway.controlUi.allowedOrigins","value":["https://openclaw.labx.sh"]}]
+            env:
+              HOME: /home/node
+              OPENCLAW_HOME: /home/node
+              OPENCLAW_STATE_DIR: /home/node/.openclaw
+              OPENCLAW_CONFIG_DIR: /home/node/.openclaw
+              OPENCLAW_CONFIG_PATH: /home/node/.openclaw/openclaw.json
         containers:
           app:
             image:
               repository: ghcr.io/openclaw/openclaw
               tag: 2026.3.1@sha256:dcf11a3a97a9b0e42dd41fcd4891533e77ff72e7b0380c743177bfbfd6f38b2d
-            command: ["node", "dist/index.js", "gateway", "--bind", "lan", "--port", "18789", "--allow-unconfigured"]
+            command: ["node", "dist/index.js", "gateway", "--bind", "lan", "--port", "18789"]
             env:
               TZ: Europe/Rome
               HOME: /home/node
