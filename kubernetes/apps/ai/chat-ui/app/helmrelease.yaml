@@ -18,7 +18,7 @@ spec:
           app:
             image:
               repository: ghcr.io/huggingface/chat-ui-db
-              tag: 0.10.0@sha256:c17a35b6ef2cf587cf139152118a72aaa5c54921bfa3430bc4898528e100bd25
+              tag: 0.20.0@sha256:42f28a74d8333353eefd8691de95dda0925ce359725d67128082ef76fa59cd3a
             env:
               TZ: Europe/Rome
               PORT: &port 3000
