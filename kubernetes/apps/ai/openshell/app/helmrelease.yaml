@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://k8s-schemas-jnobrega.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: openshell
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: openshell
+  interval: 1h
+  values:
+    server:
+      disableTls: true
+      auth:
+        allowUnauthenticatedUsers: true
