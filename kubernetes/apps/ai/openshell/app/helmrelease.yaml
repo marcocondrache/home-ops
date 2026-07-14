@@ -9,13 +9,6 @@ spec:
     name: openshell
   interval: 1h
   values:
-    grpcRoute:
-      enabled: true
-      hostnames:
-        - openshell.labx.sh
-      gateway:
-        name: envoy-internal
-        namespace: network
     server:
       disableTls: true
       auth:
