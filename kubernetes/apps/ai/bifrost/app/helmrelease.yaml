@@ -41,3 +41,4 @@ spec:
         key: BIFROST_ENCRYPTION_KEY
       client:
         enforceAuthOnInference: true
+        logRetentionDays: 30
