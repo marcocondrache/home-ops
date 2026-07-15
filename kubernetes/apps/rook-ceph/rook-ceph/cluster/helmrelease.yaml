@@ -9,6 +9,7 @@ spec:
     kind: OCIRepository
     name: rook-ceph-cluster
   interval: 1h
+  timeout: 10m
   values:
     cephClusterSpec:
       cleanupPolicy:
@@ -24,40 +25,18 @@ spec:
         ssl: false
         prometheusEndpoint: http://prometheus-operated.o11y.svc.cluster.local:9090
       mgr:
-        count: 1
-        allowMultiplePerNode: true
         modules:
           - name: pg_autoscaler
             enabled: true
-      mon:
-        allowMultiplePerNode: true
-        count: 1
       network:
         connections:
           requireMsgr2: true
       resources:
         osd:
-          requests:
-            cpu: 500m
-            memory: 2Gi
           limits:
-            memory: 2Gi
-        mon:
-          requests:
-            cpu: 250m
-            memory: 1Gi
-          limits:
-            memory: 1Gi
-        mgr:
-          requests:
-            cpu: 250m
-            memory: 512Mi
-          limits:
-            memory: 1Gi
+            memory: 8Gi # Required for bootstrap
       storage:
         devicePathFilter: "^/dev/disk/by-path/pci-.*-nvme-1$"
-        config:
-          osdsPerDevice: "1"
         useAllDevices: false
         useAllNodes: true
     monitoring:
@@ -79,7 +58,7 @@ spec:
         spec:
           failureDomain: osd
           replicated:
-            size: 1
+            size: 2
         storageClass:
           enabled: true
           name: ceph-block
