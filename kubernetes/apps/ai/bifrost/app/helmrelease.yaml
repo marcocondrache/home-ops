@@ -12,7 +12,7 @@ spec:
   values:
     image:
       repository: mirror.gcr.io/maximhq/bifrost
-      tag: v1.6.4@sha256:5f1fed63b5c2c78c51f25d80d5d2d683d79f74587ea0906e8c03fbd256ab52e0
+      tag: 2.1.28@sha256:cd96e814408af13df8b6ab134d53e50a47cce54bc7ab4be266dfd61b5bae21f0
     podSecurityContext:
       runAsUser: 1000
     storage:
