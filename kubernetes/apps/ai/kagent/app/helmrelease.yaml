@@ -54,6 +54,7 @@ spec:
       default: openAI
       openAI:
         provider: OpenAI
+        model: MiniMax-M3
         apiKeySecretRef: kagent
         apiKeySecretKey: BIFROST_API_KEY
         config:
