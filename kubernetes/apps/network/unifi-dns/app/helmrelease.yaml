@@ -41,6 +41,7 @@ spec:
     policy: sync
     sources:
       - gateway-httproute
+      - gateway-grpcroute
       - service
     txtOwnerId: main
     txtPrefix: k8s.main.%{record_type}-
