@@ -19,5 +19,6 @@ spec:
         name: envoy-internal
         namespace: network
     server:
+      disableTls: true
       auth:
         allowUnauthenticatedUsers: true
