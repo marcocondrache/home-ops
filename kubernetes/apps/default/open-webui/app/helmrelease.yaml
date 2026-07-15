@@ -10,7 +10,6 @@ spec:
     name: open-webui
   interval: 30m
   values:
-    fullnameOverride: open-webui
     image:
       tag: v0.10.2@sha256:9fcea9c6e32ab60b0498f3986c6cdf651ddbe61db48d2213a3d28048ddd673d4
       useSlim: true
@@ -20,11 +19,7 @@ spec:
       enabled: false
     enableOpenaiApi: false
     websocket:
-      enabled: true
-      manager: redis
-      url: redis://open-webui-dragonfly:6379
-      redis:
-        enabled: false
+      enabled: false
     extraEnvVars:
       ENABLE_SIGNUP: false
       RAG_WEB_SEARCH_ENGINE: searxng

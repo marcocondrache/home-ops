@@ -7,12 +7,9 @@ metadata:
 spec:
   components:
     - ../../../../components/kopiur/backup
-    - ../../../../components/dragonfly
   dependsOn:
     - name: rook-ceph-cluster
       namespace: rook-ceph
-    - name: dragonfly
-      namespace: dragonfly-system
   interval: 1h
   path: ./kubernetes/apps/default/open-webui/app
   postBuild:
