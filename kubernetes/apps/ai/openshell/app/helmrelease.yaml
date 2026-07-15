@@ -11,6 +11,13 @@ spec:
   values:
     certManager:
       enabled: true
+    grpcRoute:
+      enabled: true
+      hostnames:
+        - openshell.labx.sh
+      gateway:
+        name: envoy-internal
+        namespace: network
     server:
       auth:
         allowUnauthenticatedUsers: true
