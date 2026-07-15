@@ -2,8 +2,7 @@
 customization:
   extraKernelArgs:
     - -selinux
-    - amd_iommu=off # PCI Passthrough
-    - iommu=pt # PCI Passthrough
+    - iommu.passthrough=1
     - amd_pstate=active # AMD P-State
     - thunderbolt.host_reset=0 # Thunderbolt NICs
     - talos.dashboard.disabled=1
