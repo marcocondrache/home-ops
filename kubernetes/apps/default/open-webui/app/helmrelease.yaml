@@ -21,6 +21,7 @@ spec:
     websocket:
       enabled: false
     extraEnvVars:
+      OFFLINE_MODE: true
       ENABLE_SIGNUP: false
       RAG_WEB_SEARCH_ENGINE: searxng
       SEARXNG_QUERY_URL: http://searxng.default.svc.cluster.local:8080/search?q=<query>
