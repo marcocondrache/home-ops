@@ -28,6 +28,8 @@ spec:
         modules:
           - name: pg_autoscaler
             enabled: true
+      mon:
+        count: 1
       network:
         connections:
           requireMsgr2: true
@@ -56,7 +58,7 @@ spec:
     cephBlockPools:
       - name: ceph-blockpool
         spec:
-          failureDomain: osd
+          failureDomain: host
           replicated:
             size: 2
         storageClass:
