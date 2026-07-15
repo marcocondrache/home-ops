@@ -2,7 +2,6 @@
 machine:
   type: controlplane
   nodeLabels:
-    # ponytail: reuse queen's zone "m" if same rack; change if alpha sits elsewhere
     topology.kubernetes.io/zone: m
 ---
 apiVersion: v1alpha1
@@ -13,5 +12,4 @@ apiVersion: v1alpha1
 kind: LinkAliasConfig
 name: net0
 selector:
-  # ponytail: placeholder — set alpha's real NIC MAC before apply, else no net0/bond0
   match: mac(link.permanent_addr) == "00:00:00:00:00:00"

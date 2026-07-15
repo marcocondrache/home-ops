@@ -12,6 +12,7 @@ spec:
     staticConfig:
       static:
         - nas.labx.internal
+        - alpha.labx.internal
         - gamma.labx.internal
   metricRelabelings:
     - targetLabel: service
