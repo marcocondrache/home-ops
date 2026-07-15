@@ -24,7 +24,7 @@ spec:
       prometheusRule:
         enabled: true
     nodes:
-      queen:
+      gamma:
         pools:
           default:
             backend: lvmthin

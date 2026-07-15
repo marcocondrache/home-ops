@@ -12,7 +12,7 @@ spec:
     staticConfig:
       static:
         - nas.labx.internal
-        - queen.labx.internal
+        - gamma.labx.internal
   metricRelabelings:
     - targetLabel: service
       replacement: blackbox-exporter-lan
