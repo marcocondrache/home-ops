@@ -10,5 +10,4 @@ resources:
   - ./namespace.yaml
   - ./agent-sandbox/ks.yaml
   - ./bifrost/ks.yaml
-  - ./kagent/ks.yaml
   - ./openshell/ks.yaml

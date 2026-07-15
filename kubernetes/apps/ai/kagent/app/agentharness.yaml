@@ -1,8 +1,0 @@
-apiVersion: kagent.dev/v1alpha2
-kind: AgentHarness
-metadata:
-  name: my-sandbox
-spec:
-  backend: openclaw
-  modelConfigRef: default-model-config
-  description: "my openclaw agent"
