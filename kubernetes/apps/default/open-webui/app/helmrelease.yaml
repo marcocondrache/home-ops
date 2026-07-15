@@ -1,5 +1,5 @@
 ---
-# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/helm.toolkit.fluxcd.io/helmrelease_v2.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
@@ -10,44 +10,37 @@ spec:
     name: open-webui
   interval: 30m
   values:
-    controllers:
-      open-webui:
-        annotations:
-          reloader.stakater.com/auto: "true"
-        containers:
-          app:
-            image:
-              repository: ghcr.io/open-webui/open-webui
-              tag: v0.10.2@sha256:9fcea9c6e32ab60b0498f3986c6cdf651ddbe61db48d2213a3d28048ddd673d4
-            env:
-              ENABLE_OLLAMA_API: false
-              ENABLE_OPENAI_API: false
-              ENABLE_SIGNUP: false
-              RAG_WEB_SEARCH_ENGINE: searxng
-              SEARXNG_QUERY_URL: http://searxng.default.svc.cluster.local:8080/search?q=<query>
-              ENABLE_WEBSOCKET_SUPPORT: true
-              WEBSOCKET_MANAGER: redis
-              WEBSOCKET_REDIS_URL: redis://open-webui-dragonfly:6379
-            resources:
-              requests:
-                cpu: 100m
-              limits:
-                memory: 2Gi
+    fullnameOverride: open-webui
+    image:
+      tag: v0.10.2@sha256:9fcea9c6e32ab60b0498f3986c6cdf651ddbe61db48d2213a3d28048ddd673d4
+      useSlim: true
+    ollama:
+      enabled: false
+    pipelines:
+      enabled: false
+    enableOpenaiApi: false
+    websocket:
+      enabled: true
+      manager: redis
+      url: redis://open-webui-dragonfly:6379
+      redis:
+        enabled: false
+    extraEnvVars:
+      ENABLE_SIGNUP: false
+      RAG_WEB_SEARCH_ENGINE: searxng
+      SEARXNG_QUERY_URL: http://searxng.default.svc.cluster.local:8080/search?q=<query>
+    resources:
+      requests:
+        cpu: 100m
+      limits:
+        memory: 2Gi
     persistence:
-      config:
-        existingClaim: "{{ .Release.Name }}"
-        globalMounts:
-          - path: /app/backend/data
+      enabled: true
+      existingClaim: open-webui
     route:
-      app:
-        hostnames:
-          - chat.labx.sh
-        parentRefs:
-          - name: envoy-internal
-            namespace: network
-    service:
-      app:
-        ports:
-          http:
-            appProtocol: kubernetes.io/ws
-            port: 8080
+      enabled: true
+      hostnames:
+        - chat.labx.sh
+      parentRefs:
+        - name: envoy-internal
+          namespace: network
