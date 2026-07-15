@@ -10,9 +10,10 @@ spec:
     name: open-webui
   interval: 30m
   values:
+    workload:
+      kind: Deployment
     image:
-      tag: v0.10.2@sha256:9fcea9c6e32ab60b0498f3986c6cdf651ddbe61db48d2213a3d28048ddd673d4
-      useSlim: true
+      tag: v0.10.2-slim@sha256:f03f7fcdaf5e3381b3d505c0e66f2bf4e82d1918082022b85dee7da1299b6efd
     ollama:
       enabled: false
     pipelines:
@@ -23,8 +24,6 @@ spec:
     extraEnvVars:
       OFFLINE_MODE: true
       ENABLE_SIGNUP: false
-      RAG_WEB_SEARCH_ENGINE: searxng
-      SEARXNG_QUERY_URL: http://searxng.default.svc.cluster.local:8080/search?q=<query>
     extraEnvFrom:
       - secretRef:
           name: open-webui-secret
