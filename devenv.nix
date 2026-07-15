@@ -8,7 +8,7 @@ let
   krew = "${config.env.DEVENV_STATE}/.krew";
 in
 {
-  name = "hive";
+  name = "home-ops";
 
   dotenv.enable = true;
   stdenv = pkgs.stdenvNoCC;

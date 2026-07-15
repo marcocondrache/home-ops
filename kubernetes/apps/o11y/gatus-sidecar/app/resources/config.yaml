@@ -42,7 +42,7 @@ ui:
     - name: Github
       link: https://github.com/marcocondrache
     - name: Homelab
-      link: https://github.com/marcocondrache/hive
+      link: https://github.com/marcocondrache/home-ops
 
 web:
   port: ${GATUS_WEB_PORT}

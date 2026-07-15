@@ -22,7 +22,7 @@ spec:
         - notification-controller
       sync:
         kind: GitRepository
-        url: https://github.com/marcocondrache/hive
+        url: https://github.com/marcocondrache/home-ops
         ref: refs/heads/main
         path: kubernetes/flux/cluster
         interval: 1h
