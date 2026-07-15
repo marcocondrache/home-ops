@@ -44,8 +44,6 @@ spec:
           value: openshell.ai.svc.cluster.local:8080
         - name: OPENSHELL_INSECURE
           value: "true"
-    ui:
-      replicas: 0
     database:
       postgres:
         bundled:
