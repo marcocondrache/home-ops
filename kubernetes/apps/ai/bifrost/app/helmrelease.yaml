@@ -33,11 +33,11 @@ spec:
       host: "::"
       authConfig:
         isEnabled: true
-        existingSecret: bifrost
+        existingSecret: bifrost-secret
         usernameKey: BIFROST_ADMIN_USERNAME
         passwordKey: BIFROST_ADMIN_PASSWORD
       encryptionKeySecret:
-        name: bifrost
+        name: bifrost-secret
         key: BIFROST_ENCRYPTION_KEY
       client:
         enforceAuthOnInference: true
