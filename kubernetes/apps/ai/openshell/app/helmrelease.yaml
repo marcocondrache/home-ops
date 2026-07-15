@@ -9,7 +9,8 @@ spec:
     name: openshell
   interval: 1h
   values:
+    certManager:
+      enabled: true
     server:
-      disableTls: true
       auth:
         allowUnauthenticatedUsers: true
