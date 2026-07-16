@@ -9,11 +9,12 @@ components:
 
 resources:
   - ./namespace.yaml
-  - ./k8s-gpu-dra-driver/ks.yaml
   - ./cilium/ks.yaml
   - ./coredns/ks.yaml
+  - ./descheduler/ks.yaml
+  - ./drm-exporter/ks.yaml
+  - ./k8s-gpu-dra-driver/ks.yaml
   - ./metrics-server/ks.yaml
   - ./multus/ks.yaml
-  - ./snapshot-controller/ks.yaml
-  - ./drm-exporter/ks.yaml
   - ./reloader/ks.yaml
+  - ./snapshot-controller/ks.yaml
