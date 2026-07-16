@@ -3,6 +3,9 @@ machine:
   type: controlplane
   nodeLabels:
     topology.kubernetes.io/zone: m
+  install:
+    diskSelector:
+      serial: S7YDNS0L508619L
 ---
 apiVersion: v1alpha1
 kind: HostnameConfig

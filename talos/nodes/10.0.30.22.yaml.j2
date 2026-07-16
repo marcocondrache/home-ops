@@ -3,6 +3,9 @@ machine:
   type: worker
   nodeLabels:
     topology.kubernetes.io/zone: m
+  install:
+    diskSelector:
+      serial: S7YDNS0L513062A
 ---
 apiVersion: v1alpha1
 kind: HostnameConfig
