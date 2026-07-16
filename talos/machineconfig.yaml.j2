@@ -46,15 +46,10 @@ machine:
         rsize=1048576
         wsize=1048576
   install:
-    diskSelector:
-        type: nvme
     image: factory.talos.dev/metal-installer/{{ ENV.SCHEMATIC }}:v1.13.6
-    wipe: false
   kernel:
     modules:
       - name: nbd
-      - name: thunderbolt
-      - name: thunderbolt_net
       - name: dm_thin_pool
       - name: drbd_transport_tcp
       - name: drbd
@@ -191,12 +186,6 @@ cluster:
   serviceAccount:
     key: ref+op://hive/talos/CERT_K8SSERVICEACCOUNT_KEY
   {% endif %}
----
-apiVersion: v1alpha1
-kind: LinkAliasConfig
-name: net0
-selector:
-  match: mac(link.permanent_addr) == "58:47:ca:7f:c1:0d"
 ---
 apiVersion: v1alpha1
 kind: BondConfig

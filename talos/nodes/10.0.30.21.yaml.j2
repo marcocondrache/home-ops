@@ -1,0 +1,18 @@
+---
+machine:
+  type: controlplane
+  nodeLabels:
+    topology.kubernetes.io/zone: m
+  install:
+    diskSelector:
+      serial: S7YDNS0L508619L
+---
+apiVersion: v1alpha1
+kind: HostnameConfig
+hostname: alpha
+---
+apiVersion: v1alpha1
+kind: LinkAliasConfig
+name: net0
+selector:
+  match: mac(link.permanent_addr) == "58:47:ca:7c:ff:3b"

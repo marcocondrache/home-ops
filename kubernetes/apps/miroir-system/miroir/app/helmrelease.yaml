@@ -1,4 +1,3 @@
-
 ---
 # yaml-language-server: $schema=https://k8s-schemas.home-operations.com/helm.toolkit.fluxcd.io/helmrelease_v2.json
 apiVersion: helm.toolkit.fluxcd.io/v2
@@ -11,7 +10,7 @@ spec:
     name: miroir
   interval: 1h
   values:
-    replicaCount: 1
+    replicaCount: 2
     monitoring:
       dashboards:
         enabled: true
@@ -24,7 +23,12 @@ spec:
       prometheusRule:
         enabled: true
     nodes:
-      queen:
+      alpha:
+        pools:
+          default:
+            backend: lvmthin
+            device: /dev/disk/by-partlabel/r-miroir
+      gamma:
         pools:
           default:
             backend: lvmthin
@@ -32,5 +36,9 @@ spec:
     storageClasses:
       - name: miroir-local
         isDefault: false
+      - name: miroir-replicated
+        isDefault: false
+        quorum: freeze
+        replicas: 2
     volumeSnapshotClasses:
       - name: miroir-snap
