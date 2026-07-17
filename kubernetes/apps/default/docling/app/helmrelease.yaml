@@ -44,7 +44,7 @@ spec:
                   periodSeconds: 10
             securityContext:
               allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: false
+              readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
             resources:
               requests:
@@ -64,7 +64,9 @@ spec:
           http:
             port: *port
     persistence:
-      tmp:
+      run:
         type: emptyDir
         medium: Memory
-        sizeLimit: 128Mi
+        sizeLimit: 16Mi
+      tmp:
+        type: emptyDir
