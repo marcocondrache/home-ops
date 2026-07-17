@@ -6,13 +6,9 @@ metadata:
   name: kubeai
 spec:
   interval: 1h
-  chart:
-    spec:
-      chart: kubeai
-      version: 0.23.3
-      sourceRef:
-        kind: HelmRepository
-        name: kubeai
+  chartRef:
+    kind: OCIRepository
+    name: kubeai
   values:
     open-webui:
       enabled: false
