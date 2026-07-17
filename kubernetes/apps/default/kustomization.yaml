@@ -15,6 +15,7 @@ resources:
   - ./bichon/ks.yaml
   - ./deduparr/ks.yaml
   - ./dpc-exporter/ks.yaml
+  - ./docling/ks.yaml
   - ./recyclarr/ks.yaml
   - ./zigbee/ks.yaml
   - ./mosquitto/ks.yaml
