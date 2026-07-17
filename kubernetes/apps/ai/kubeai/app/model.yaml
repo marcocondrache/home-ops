@@ -1,0 +1,23 @@
+apiVersion: kubeai.org/v1
+kind: Model
+metadata:
+  name: qwen3-embedding-0-6b
+spec:
+  features:
+    - TextEmbedding
+  url: hf://Qwen/Qwen3-Embedding-0.6B
+  engine: VLLM
+  resourceProfile: cpu:1
+  minReplicas: 0
+  maxReplicas: 1
+  targetRequests: 8
+  scaleDownDelaySeconds: 300
+  args:
+    - --runner
+    - pooling
+
+    - --max-model-len
+    - "8192"
+
+    - --gpu-memory-utilization
+    - "0.80"
