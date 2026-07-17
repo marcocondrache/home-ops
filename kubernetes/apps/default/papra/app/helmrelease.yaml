@@ -28,7 +28,7 @@ spec:
               INGESTION_FOLDER_IS_ENABLED: true
               INGESTION_FOLDER_POST_PROCESSING_STRATEGY: delete
               INGESTION_FOLDER_PROCESSING_CONCURRENCY: 4
-              CONTENT_EXTRACTION_STRATEGY: docling,internal
+              CONTENT_EXTRACTION_STRATEGY: docling
               DOCLING_BASE_URL: http://docling.default.svc.cluster.local:5001
               AUTH_SECRET:
                 valueFrom:
@@ -49,7 +49,7 @@ spec:
               requests:
                 cpu: 25m
               limits:
-                memory: 1Gi
+                memory: 512Mi
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
