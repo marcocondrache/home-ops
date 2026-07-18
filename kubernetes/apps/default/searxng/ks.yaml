@@ -5,11 +5,6 @@ kind: Kustomization
 metadata:
   name: searxng
 spec:
-  components:
-    - ../../../../components/dragonfly
-  dependsOn:
-    - name: dragonfly
-      namespace: dragonfly-system
   interval: 1h
   path: ./kubernetes/apps/default/searxng/app
   postBuild:

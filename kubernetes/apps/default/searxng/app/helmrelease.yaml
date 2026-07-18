@@ -28,7 +28,6 @@ spec:
             env:
               SEARXNG_BASE_URL: https://search.labx.sh
               SEARXNG_PORT: &httpPort 8080
-              SEARXNG_VALKEY_URL: "redis://searxng-dragonfly:6379"
             envFrom:
               - secretRef:
                   name: searxng-secret
@@ -77,9 +76,6 @@ spec:
         type: configMap
         name: searxng-config
         globalMounts:
-          - path: /etc/searxng/limiter.toml
-            subPath: limiter.toml
-            readOnly: true
           - path: /etc/searxng/settings.yml
             subPath: settings.yaml
             readOnly: true
