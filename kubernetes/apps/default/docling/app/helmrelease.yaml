@@ -19,7 +19,6 @@ spec:
               tag: 1.26.0@sha256:0ac39ce692374b6ec9942f0b899e57b9428a6d673a3af35bf457cce68397bc09
             env:
               TZ: Europe/Rome
-              OMP_NUM_THREADS: 8
               DOCLING_NUM_THREADS: 8
             probes:
               liveness:
