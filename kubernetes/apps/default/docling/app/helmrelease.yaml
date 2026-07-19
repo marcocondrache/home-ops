@@ -15,8 +15,8 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/docling-project/docling-serve-cpu
-              tag: v1.26.0@sha256:7e07522e0240c1db3ff5b837ffa969c2ecd5a71664c0e0369f5a69fc169e30ba
+              repository: ghcr.io/marcocondrache/docling-serve-rocm
+              tag: 1.26.0@sha256:0ac39ce692374b6ec9942f0b899e57b9428a6d673a3af35bf457cce68397bc09
             env:
               TZ: Europe/Rome
               OMP_NUM_THREADS: 8
