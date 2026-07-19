@@ -20,6 +20,8 @@ spec:
             env:
               TZ: Europe/Rome
               DOCLING_NUM_THREADS: 8
+              ROCR_VISIBLE_DEVICES: 0
+              TORCH_ROCM_AOTRITON_ENABLE_EXPERIMENTAL: 1
             probes:
               liveness:
                 enabled: true
