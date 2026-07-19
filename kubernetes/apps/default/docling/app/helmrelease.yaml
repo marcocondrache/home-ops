@@ -16,7 +16,7 @@ spec:
           app:
             image:
               repository: ghcr.io/marcocondrache/docling-serve-rocm
-              tag: 1.26.0@sha256:0ac39ce692374b6ec9942f0b899e57b9428a6d673a3af35bf457cce68397bc09
+              tag: 1.26.0@sha256:cf692f456e9c16ad9c82f8f4f23eb740f6c90ba68b9d3b7c64319930e6a74d80
             env:
               TZ: Europe/Rome
               DOCLING_NUM_THREADS: 8
