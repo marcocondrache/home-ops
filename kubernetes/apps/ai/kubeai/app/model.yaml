@@ -10,6 +10,7 @@ spec:
   resourceProfile: cpu:1
   minReplicas: 0
   maxReplicas: 1
+  cacheProfile: replicated
   targetRequests: 8
   scaleDownDelaySeconds: 300
   args:

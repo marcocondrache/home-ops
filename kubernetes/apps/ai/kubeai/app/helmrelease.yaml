@@ -12,3 +12,6 @@ spec:
   values:
     open-webui:
       enabled: false
+    cacheProfiles:
+      replicated:
+        storageClassName: miroir-replicated
