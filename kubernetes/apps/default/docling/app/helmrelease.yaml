@@ -20,6 +20,7 @@ spec:
             env:
               TZ: Europe/Rome
               DOCLING_NUM_THREADS: 8
+              HSA_OVERRIDE_GFX_VERSION: 11.0.0
             probes:
               liveness:
                 enabled: true
@@ -44,7 +45,6 @@ spec:
                   periodSeconds: 10
             securityContext:
               allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
             resources:
               claims:
