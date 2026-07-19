@@ -52,6 +52,9 @@ spec:
               limits:
                 memory: 4Gi
     defaultPodOptions:
+      resourceClaims:
+        - name: gpu
+          resourceClaimName: shared
       securityContext:
         runAsNonRoot: true
         runAsUser: 1001
