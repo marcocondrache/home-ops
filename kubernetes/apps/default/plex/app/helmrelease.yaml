@@ -60,7 +60,7 @@ spec:
     defaultPodOptions:
       resourceClaims:
         - name: gpu
-          resourceClaimTemplateName: default
+          resourceClaimName: shared
       securityContext:
         runAsNonRoot: true
         runAsUser: 1000
