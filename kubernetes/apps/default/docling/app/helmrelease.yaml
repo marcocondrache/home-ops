@@ -20,6 +20,7 @@ spec:
             env:
               TZ: Europe/Rome
               OMP_NUM_THREADS: 8
+              HSA_OVERRIDE_GFX_VERSION: 11.0.0
             probes:
               liveness:
                 enabled: true
