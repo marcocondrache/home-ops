@@ -21,6 +21,7 @@ spec:
               TZ: Europe/Rome
               DOCLING_NUM_THREADS: 8
               HSA_OVERRIDE_GFX_VERSION: 11.0.0
+              TORCH_ROCM_AOTRITON_ENABLE_EXPERIMENTAL: 1
             probes:
               liveness:
                 enabled: true
