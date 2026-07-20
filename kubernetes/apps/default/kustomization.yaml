@@ -35,5 +35,5 @@ resources:
   - ./n8n/ks.yaml
   - ./chaski/ks.yaml
   - ./open-webui/ks.yaml
-  - ./open-terminal/ks.yaml
+  # - ./open-terminal/ks.yaml
   - ./searxng/ks.yaml
