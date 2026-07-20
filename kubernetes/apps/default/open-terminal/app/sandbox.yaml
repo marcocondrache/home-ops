@@ -19,6 +19,9 @@ spec:
           env:
             - name: TZ
               value: Europe/Rome
+          envFrom:
+            - secretRef:
+                name: open-terminal-secret
           volumeMounts:
             - name: home
               mountPath: /home/user
