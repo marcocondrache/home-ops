@@ -1,0 +1,26 @@
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/monitoring.coreos.com/servicemonitor_v1.json
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: bifrost
+spec:
+  endpoints:
+    - port: http
+      path: /metrics
+      honorLabels: true
+      basicAuth:
+        username:
+          name: bifrost-secret
+          key: BIFROST_ADMIN_USERNAME
+        password:
+          name: bifrost-secret
+          key: BIFROST_ADMIN_PASSWORD
+  jobLabel: bifrost
+  namespaceSelector:
+    matchNames:
+      - default
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: bifrost
+      app.kubernetes.io/instance: bifrost
