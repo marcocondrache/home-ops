@@ -10,3 +10,4 @@ components:
 resources:
   - ./namespace.yaml
   - ./kubeai/ks.yaml
+  - ./agent-sandbox/ks.yaml
