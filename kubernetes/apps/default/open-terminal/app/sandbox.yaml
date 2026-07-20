@@ -8,6 +8,8 @@ spec:
   podTemplate:
     spec:
       runtimeClassName: gvisor
+      securityContext:
+        fsGroup: 1000
       containers:
         - name: open-terminal
           image: ghcr.io/open-webui/open-terminal:latest@sha256:3af1a1aab49d653d357a5176c9862af0111ccf4b8b3a5f2bbdef109f196aeca7
@@ -25,7 +27,7 @@ spec:
         name: home
       spec:
         accessModes: ["ReadWriteOnce"]
-        storageClassName: ceph-block
+        storageClassName: miroir-local
         resources:
           requests:
             storage: 10Gi
