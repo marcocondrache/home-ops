@@ -53,6 +53,7 @@ spec:
               claims:
                 - name: gpu
               requests:
+                cpu: 8
                 memory: 2Gi
               limits:
                 memory: 4Gi
