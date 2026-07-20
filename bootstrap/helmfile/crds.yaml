@@ -31,4 +31,4 @@ releases:
     namespace: o11y
 
   - name: kubeai
-    namespace: ai
+    namespace: ai-system

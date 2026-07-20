@@ -6,11 +6,11 @@ metadata:
   name: kubeai
 spec:
   interval: 1h
-  path: ./kubernetes/apps/ai/kubeai/app
+  path: ./kubernetes/apps/ai-system/kubeai/app
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: ai
+  targetNamespace: ai-system
   wait: false
