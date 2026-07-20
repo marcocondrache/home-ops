@@ -6,6 +6,9 @@ metadata:
 spec:
   service: true
   podTemplate:
+    metadata:
+      annotations:
+        dev.gvisor.flag.network: "host"
     spec:
       runtimeClassName: gvisor
       securityContext:
