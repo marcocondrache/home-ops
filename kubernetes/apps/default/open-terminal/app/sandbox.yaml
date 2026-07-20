@@ -1,0 +1,30 @@
+---
+apiVersion: agents.x-k8s.io/v1beta1
+kind: Sandbox
+metadata:
+  name: open-terminal
+spec:
+  service: true
+  podTemplate:
+    spec:
+      containers:
+        - name: open-terminal
+          image: ghcr.io/open-webui/open-terminal:latest
+          ports:
+            - name: http
+              containerPort: 8000
+          env:
+            - name: TZ
+              value: Europe/Rome
+          volumeMounts:
+            - name: home
+              mountPath: /home/user
+  volumeClaimTemplates:
+    - metadata:
+        name: home
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: ceph-block
+        resources:
+          requests:
+            storage: 10Gi
