@@ -22,6 +22,7 @@ spec:
               DOCLING_NUM_THREADS: 8
               HSA_OVERRIDE_GFX_VERSION: 11.0.0
               TORCH_ROCM_AOTRITON_ENABLE_EXPERIMENTAL: 1
+              MIOPEN_USER_DB_PATH: /opt/app-root/src/.cache/miopen
             probes:
               liveness:
                 enabled: true
@@ -46,6 +47,7 @@ spec:
                   periodSeconds: 10
             securityContext:
               allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
             resources:
               claims:
@@ -70,6 +72,13 @@ spec:
           http:
             port: *port
     persistence:
+      cache:
+        existingClaim: "{{ .Release.Name }}-cache"
+        globalMounts:
+          - path: /opt/app-root/src/.cache/miopen
+            subPath: miopen
+          - path: /opt/app-root/src/.cache/torch
+            subPath: torch
       run:
         type: emptyDir
         medium: Memory
