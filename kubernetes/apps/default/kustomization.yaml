@@ -13,7 +13,7 @@ resources:
   - ./namespace.yaml
   - ./atuin/ks.yaml
   - ./bazarr/ks.yaml
-  - ./bichon/ks.yaml
+  - ./bifrost/ks.yaml
   - ./deduparr/ks.yaml
   - ./dpc-exporter/ks.yaml
   - ./docling/ks.yaml
@@ -33,7 +33,6 @@ resources:
   - ./pdf/ks.yaml
   - ./agregarr/ks.yaml
   - ./n8n/ks.yaml
-  # - ./tvarr/ks.yaml
   - ./chaski/ks.yaml
   - ./open-webui/ks.yaml
   - ./searxng/ks.yaml

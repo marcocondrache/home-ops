@@ -9,5 +9,4 @@ components:
   - ../../components/kopiur/secret
 resources:
   - ./namespace.yaml
-  - ./bifrost/ks.yaml
   - ./kubeai/ks.yaml

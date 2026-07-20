@@ -7,7 +7,6 @@ metadata:
 spec:
   hostnames:
     - ai.labx.sh
-    - bifrost.labx.sh
   parentRefs:
     - name: envoy-external
       namespace: network
