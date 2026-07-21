@@ -30,11 +30,10 @@ spec:
               INGESTION_FOLDER_PROCESSING_CONCURRENCY: 4
               CONTENT_EXTRACTION_STRATEGY: docling
               DOCLING_BASE_URL: http://docling.default.svc.cluster.local:5001
-              AUTH_SECRET:
-                valueFrom:
-                  secretKeyRef:
-                    name: "{{ .Release.Name }}-secret"
-                    key: PAPRA_SECRET
+              OPENAI_BASE_URL: http://bifrost.default.svc.cluster.local:8080/openai/v1
+            envFrom:
+              - secretRef:
+                  name: "{{ .Release.Name }}-secret"
             probes:
               liveness:
                 enabled: true
