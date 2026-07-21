@@ -22,6 +22,7 @@ spec:
             env:
               PORT: &port 8000
               AI_IS_ENABLED: true
+              AI_DEFAULT_MODEL: openai://opencode-go/minimax-m3
               AUTO_TAGGING_ENABLED: true
               APP_BASE_URL: https://papra.labx.sh
               DOCUMENTS_OCR_LANGUAGES: eng,ita,ron
