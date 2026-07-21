@@ -23,7 +23,7 @@ download-image version:
 [confirm('Reboot node ' + node + ' [y|N] ?')]
 [doc('Reboot a node')]
 reboot-node node:
-    talosctl -n {{ node }} reboot -m powercycle
+    talosctl -n {{ node }} reboot -m force
 
 [doc('Render Talos config for a node')]
 render-config node:
