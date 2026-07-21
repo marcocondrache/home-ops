@@ -22,11 +22,13 @@ spec:
               N8N_HOST: &host "n8n.labx.sh"
               N8N_PROTOCOL: https
               N8N_EDITOR_BASE_URL: &url "https://n8n.labx.sh/"
-              N8N_RUNNERS_ENABLED: "true"
-              N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: "true"
+              N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: false
+              N8N_UNVERIFIED_PACKAGES_ENABLED: false
+              N8N_DIAGNOSTICS_ENABLED: false
+              N8N_RUNNERS_TASK_TIMEOUT: 60
               N8N_PROXY_HOPS: 1
               N8N_USER_FOLDER: /data
-              WEBHOOK_URL: *url
+              N8N_WEBHOOK_URL: *url
               GENERIC_TIMEZONE: Europe/Rome
               TZ: Europe/Rome
             envFrom:
