@@ -25,10 +25,6 @@ spec:
               AI_DEFAULT_MODEL: openai://opencode-go/glm-5.2
               AUTO_TAGGING_ENABLED: true
               APP_BASE_URL: https://papra.labx.sh
-              DOCUMENTS_OCR_LANGUAGES: eng,ita,ron
-              INGESTION_FOLDER_IS_ENABLED: true
-              INGESTION_FOLDER_POST_PROCESSING_STRATEGY: delete
-              INGESTION_FOLDER_PROCESSING_CONCURRENCY: 4
               CONTENT_EXTRACTION_STRATEGY: docling
               DOCLING_BASE_URL: http://docling.default.svc.cluster.local:5001
               OPENAI_BASE_URL: http://bifrost.default.svc.cluster.local:8080/openai/v1
