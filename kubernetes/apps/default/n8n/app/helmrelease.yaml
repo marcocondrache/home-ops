@@ -29,6 +29,8 @@ spec:
               N8N_PROXY_HOPS: 1
               N8N_USER_FOLDER: /data
               N8N_WEBHOOK_URL: *url
+              N8N_COMPRESSION_NODE_MAX_DECOMPRESSED_SIZE_BYTES: 2147483648
+              N8N_COMPRESSION_NODE_MAX_ZIP_ENTRIES: 5000
               GENERIC_TIMEZONE: Europe/Rome
               TZ: Europe/Rome
             envFrom:
