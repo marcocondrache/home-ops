@@ -10,5 +10,4 @@ spec:
   interval: 1h
   values:
     cdi:
-      staticPath: /run/cdi
       dynamicPath: /run/cdi
