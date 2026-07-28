@@ -11,4 +11,4 @@ spec:
     operation: copy
   ref:
     tag: 0.23.3
-  url: oci://ghcr.io/home-operations/charts-mirror/kubeai
+  url: oci://ocharted.labx.sh/www.kubeai.org/kubeai
