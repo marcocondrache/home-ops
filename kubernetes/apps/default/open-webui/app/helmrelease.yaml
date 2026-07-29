@@ -43,7 +43,7 @@ spec:
     containerSecurityContext:
       allowPrivilegeEscalation: false
       # capabilities: { drop: ["ALL"] }
-    #   seccompProfile: { type: RuntimeDefault }
+      seccompProfile: { type: RuntimeDefault }
     resources:
       requests:
         cpu: 100m
