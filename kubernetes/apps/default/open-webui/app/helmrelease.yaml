@@ -41,5 +41,5 @@ spec:
       hostnames:
         - chat.labx.sh
       parentRefs:
-        - name: envoy-internal
+        - name: envoy-external
           namespace: network
