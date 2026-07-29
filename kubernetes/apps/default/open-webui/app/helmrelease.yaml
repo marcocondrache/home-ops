@@ -42,8 +42,8 @@ spec:
           name: open-webui-secret
     containerSecurityContext:
       allowPrivilegeEscalation: false
-      capabilities: { drop: ["ALL"] }
-      seccompProfile: { type: RuntimeDefault }
+      # capabilities: { drop: ["ALL"] }
+    #   seccompProfile: { type: RuntimeDefault }
     resources:
       requests:
         cpu: 100m
