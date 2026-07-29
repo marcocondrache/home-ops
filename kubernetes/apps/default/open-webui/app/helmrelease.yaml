@@ -42,36 +42,13 @@ spec:
           name: open-webui-secret
     containerSecurityContext:
       allowPrivilegeEscalation: false
-      # capabilities: { drop: ["ALL"] }
+      capabilities: { drop: ["ALL"] }
       seccompProfile: { type: RuntimeDefault }
     resources:
       requests:
         cpu: 100m
       limits:
         memory: 2Gi
-    extraInitContainers:
-      - name: fix-data-permissions
-        image: busybox:1.37
-        command:
-          - sh
-          - -c
-          - |
-            chown -R 0:0 /app/backend/data
-            find /app/backend/data -type d -exec chmod 755 {} +
-            find /app/backend/data -type f -exec chmod 644 {} +
-        securityContext:
-          allowPrivilegeEscalation: false
-          runAsUser: 0
-          capabilities:
-            drop: ["ALL"]
-            add: ["CHOWN", "FOWNER"]
-        resources:
-          requests:
-            cpu: 10m
-            memory: 32Mi
-        volumeMounts:
-          - name: data
-            mountPath: /app/backend/data
     persistence:
       enabled: true
       existingClaim: open-webui
