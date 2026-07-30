@@ -10,5 +10,5 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 0.23.3
-  url: oci://ocharted.labx.sh/www.kubeai.org/kubeai
+    tag: 0.23.4
+  url: oci://ghcr.io/kubeai-project/charts/kubeai
