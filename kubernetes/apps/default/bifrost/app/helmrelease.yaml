@@ -10,6 +10,8 @@ spec:
     name: bifrost
   interval: 1h
   values:
+    strategy:
+      type: Recreate
     image:
       repository: mirror.gcr.io/maximhq/bifrost
       tag: v1.6.7@sha256:bf2208978308477a9f667dfc04cef3153197aeaca8618befefbecde3ed3378b7
