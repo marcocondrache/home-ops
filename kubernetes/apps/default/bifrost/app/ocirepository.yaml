@@ -11,4 +11,4 @@ spec:
     operation: copy
   ref:
     tag: 2.1.31
-  url: oci://ocharted.labx.sh/maximhq.github.io/bifrost/helm-charts/bifrost
+  url: oci://ghcr.io/maximhq/helm-charts/bifrost
