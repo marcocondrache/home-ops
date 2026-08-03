@@ -21,14 +21,14 @@ spec:
               N8N_PORT: &port 5678
               N8N_HOST: &host "n8n.labx.sh"
               N8N_PROTOCOL: https
-              N8N_EDITOR_BASE_URL: &url "https://n8n.labx.sh/"
+              N8N_EDITOR_BASE_URL: "https://n8n.labx.sh/"
               N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: false
               N8N_UNVERIFIED_PACKAGES_ENABLED: false
               N8N_DIAGNOSTICS_ENABLED: false
               N8N_RUNNERS_TASK_TIMEOUT: 60
               N8N_PROXY_HOPS: 1
               N8N_USER_FOLDER: /data
-              N8N_WEBHOOK_URL: *url
+              N8N_WEBHOOK_URL: "https://n8n-webhook.labx.sh/"
               N8N_COMPRESSION_NODE_MAX_DECOMPRESSED_SIZE_BYTES: 2147483648
               N8N_COMPRESSION_NODE_MAX_ZIP_ENTRIES: 5000
               GENERIC_TIMEZONE: Europe/Rome
@@ -87,6 +87,29 @@ spec:
         parentRefs:
           - name: envoy-internal
             namespace: network
+      webhook:
+        annotations:
+          gatus.home-operations.com/endpoint: |-
+            conditions: ["[STATUS] == 404"]
+        hostnames:
+          - n8n-webhook.labx.sh
+        parentRefs:
+          - name: envoy-external
+            namespace: network
+        rules:
+          - matches:
+              - path:
+                  type: PathPrefix
+                  value: /webhook/
+              - path:
+                  type: PathPrefix
+                  value: /webhook-test/
+              - path:
+                  type: PathPrefix
+                  value: /webhook-waiting/
+            backendRefs:
+              - identifier: app
+                port: *port
     persistence:
       data:
         existingClaim: "{{ .Release.Name }}"
