@@ -13,6 +13,8 @@ spec:
   values:
     cephClusterSpec:
       cephConfig:
+        global:
+          osd_pool_default_size: "2"
         mon:
           mon_cluster_log_level: info
       cleanupPolicy:
