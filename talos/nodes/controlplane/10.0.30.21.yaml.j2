@@ -1,0 +1,21 @@
+---
+apiVersion: v1alpha1
+kind: HostnameConfig
+hostname: alpha
+---
+apiVersion: v1alpha1
+kind: KubeNodeConfig
+labels:
+  topology.kubernetes.io/zone: m
+---
+apiVersion: v1alpha1
+kind: LinkAliasConfig
+name: net0
+selector:
+  match: mac(link.permanent_addr) == "58:47:ca:7c:ff:3b"
+---
+apiVersion: v1alpha1
+kind: UnattendedInstallConfig
+provisioning:
+  diskSelector:
+    match: disk.serial == "S7YDNS0L508619L"
