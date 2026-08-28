@@ -153,6 +153,7 @@ spec:
     xForwardedFor:
       trustedCIDRs:
         - 10.42.0.0/16
+        - fdf3:0f3a:242e:42::/108
   http2:
     onInvalidMessage: TerminateStream
   http3: {}
