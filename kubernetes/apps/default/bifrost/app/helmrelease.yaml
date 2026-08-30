@@ -13,8 +13,8 @@ spec:
     strategy:
       type: Recreate
     image:
-      repository: mirror.gcr.io/maximhq/bifrost
-      tag: v1.6.11@sha256:ef8e686b3588884066ec3d0e57f3fc15136b11047ad94678adefe5a9573539af
+      repository: ghcr.io/maximhq/bifrost
+      tag: v2.0.0@sha256:cf71be9fad4e0749b6e26cbb774c687413dad9a0970b83f4e1dadb6f503ea208
     podSecurityContext:
       runAsUser: 1000
     storage:
