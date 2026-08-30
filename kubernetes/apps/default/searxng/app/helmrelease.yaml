@@ -34,15 +34,10 @@ spec:
             probes:
               liveness:
                 enabled: true
-                custom: true
                 spec:
-                  httpGet:
-                    path: /stats
-                    port: *httpPort
-                  initialDelaySeconds: 0
-                  periodSeconds: 10
-                  timeoutSeconds: 1
-                  failureThreshold: 3
+                  periodSeconds: 30
+                  timeoutSeconds: 5
+                  failureThreshold: 5
               readiness:
                 enabled: true
                 custom: true
@@ -50,10 +45,14 @@ spec:
                   httpGet:
                     path: /stats
                     port: *httpPort
-                  initialDelaySeconds: 0
                   periodSeconds: 10
-                  timeoutSeconds: 1
-                  failureThreshold: 3
+                  timeoutSeconds: 5
+                  failureThreshold: 5
+              startup:
+                enabled: true
+                spec:
+                  failureThreshold: 30
+                  periodSeconds: 10
             resources:
               requests:
                 cpu: 10m
