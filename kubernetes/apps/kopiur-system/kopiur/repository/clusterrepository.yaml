@@ -22,4 +22,4 @@ spec:
       namespace: kopiur-system
       key: KOPIA_PASSWORD
   scheduleDefaults:
-      timezone: Europe/Rome
+    timezone: Europe/Rome
