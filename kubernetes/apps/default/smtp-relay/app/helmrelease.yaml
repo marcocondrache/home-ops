@@ -62,7 +62,7 @@ spec:
       app:
         type: LoadBalancer
         annotations:
-          external-dns.alpha.kubernetes.io/hostname: smtp-relay.labx.sh
+          external-dns.kubernetes.io/hostname: smtp-relay.labx.sh
           lbipam.cilium.io/ips: 10.0.90.11
         externalTrafficPolicy: Local
         ports:
