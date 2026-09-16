@@ -16,7 +16,7 @@ spec:
           app:
             image:
               repository: ghcr.io/n8n-io/n8n
-              tag: stable@sha256:cfa04788a34ae6f5d59d9086c5761315be2457a9608969553bd0add9a94959d1
+              tag: stable@sha256:1eb33706d9bd902cc83f302ba8d608420dfc0815e03ee4bb1c072367d2c5e259
             env:
               N8N_PORT: &port 5678
               N8N_HOST: &host "n8n.labx.sh"
