@@ -14,7 +14,7 @@ spec:
       type: Recreate
     image:
       repository: ghcr.io/maximhq/bifrost
-      tag: v2.2.0@sha256:12d6bbab32b44e3bb88869c6f5ca9304b53a9c43cb55c57a29f851037bcc19e1
+      tag: v2.2.1@sha256:a8942692af7b4b89196cd8fc33653b7353488dfd58b24078fe793b8574a8084b
     podSecurityContext:
       runAsUser: 1000
     storage:
