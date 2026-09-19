@@ -26,7 +26,6 @@ spec:
               AUTO_TAGGING_ENABLED: true
               APP_BASE_URL: https://papra.labx.sh
               AUTH_IS_REGISTRATION_ENABLED: false
-              CONTENT_EXTRACTION_STRATEGY: docling
               DOCLING_BASE_URL: http://docling.default.svc.cluster.local:5001
               OPENAI_BASE_URL: http://bifrost.default.svc.cluster.local:8080/openai/v1
             envFrom:

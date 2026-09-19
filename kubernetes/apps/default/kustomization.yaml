@@ -16,7 +16,6 @@ resources:
   - ./bifrost/ks.yaml
   - ./cleanrr/ks.yaml
   - ./dpc-exporter/ks.yaml
-  - ./docling/ks.yaml
   - ./recyclarr/ks.yaml
   - ./home-assistant/ks.yaml
   - ./papra/ks.yaml
