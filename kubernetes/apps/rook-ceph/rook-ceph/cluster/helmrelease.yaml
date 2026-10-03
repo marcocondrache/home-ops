@@ -60,7 +60,14 @@ spec:
             keyRotationPolicy: KeyGeneration
             keyGeneration: 2
           csi:
-            keyType: aes # aes256k requires kernel 7.0+
+            keyRotationPolicy: KeyGeneration
+            keyGeneration: 2
+            keepPriorKeyCountMax: 0
+            keyType: aes256k
+          rbdMirrorPeer:
+            keyRotationPolicy: KeyGeneration
+            keyGeneration: 2
+            keyType: aes256k
       storage:
         devicePathFilter: "^/dev/disk/by-path/pci-.*-nvme-1$"
         useAllDevices: false
