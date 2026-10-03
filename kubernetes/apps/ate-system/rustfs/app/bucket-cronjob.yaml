@@ -1,0 +1,56 @@
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/batch/cronjob_v1.json
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: rustfs-bucket
+spec:
+  schedule: "*/15 * * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      backoffLimit: 3
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: create-bucket
+              image: docker.io/amazon/aws-cli:2.17.0@sha256:643507c10ada7964ca6157b3d799f030b90577643da9955d319a77399ed80d73
+              env:
+                - name: AWS_REGION
+                  value: us-east-1
+                - name: AWS_DEFAULT_REGION
+                  value: us-east-1
+                - name: AWS_ENDPOINT_URL
+                  value: http://rustfs.ate-system.svc:9000
+                - name: AWS_S3_ADDRESSING_STYLE
+                  value: path
+              envFrom:
+                - secretRef:
+                    name: rustfs-secret
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  set -eu
+                  for i in $(seq 1 30); do
+                    if aws s3api head-bucket --bucket ate-snapshots; then
+                      echo "bucket ate-snapshots already exists"
+                      exit 0
+                    fi
+                    if aws s3api create-bucket --bucket ate-snapshots; then
+                      echo "bucket ate-snapshots created"
+                      exit 0
+                    fi
+                    echo "waiting for rustfs ($i/30)"
+                    sleep 10
+                  done
+                  echo "timed out waiting for rustfs"
+                  exit 1
+              resources:
+                requests:
+                  cpu: 10m
+                limits:
+                  memory: 128Mi

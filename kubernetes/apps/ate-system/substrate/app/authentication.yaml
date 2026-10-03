@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ate-api-authentication
+data:
+  # Talos does not set a custom service-account issuer. ateapi accepts a token
+  # only when iss matches this string. The discovery files are what ate-setup
+  # writes for an in-cluster issuer.
+  authentication.yaml: |
+    actorIdentityJWTProvider: kubernetes
+    jwtProviders:
+    - name: kubernetes
+      issuer: https://kubernetes.default.svc.cluster.local
+      audiences: [api.ate-system.svc]
+      certificateAuthorityFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+      discoveryTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
