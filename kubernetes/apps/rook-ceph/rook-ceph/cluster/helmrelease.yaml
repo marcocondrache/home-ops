@@ -17,6 +17,7 @@ spec:
           osd_pool_default_size: "2"
         mon:
           mon_cluster_log_level: info
+          mon_osd_min_down_reporters: "1"
       cleanupPolicy:
         wipeDevicesFromOtherClusters: true
       crashCollector:
