@@ -1,0 +1,14 @@
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/cilium.io/ciliumnetworkpolicy_v2.json
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: ceph-csi-ctrlplugin-allow-ceph
+spec:
+  endpointSelector:
+    matchLabels:
+      app: rook-ceph.rbd.csi.ceph.com-ctrlplugin
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app: rook-ceph-mon
