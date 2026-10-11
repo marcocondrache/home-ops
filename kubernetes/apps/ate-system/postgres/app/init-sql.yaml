@@ -1,0 +1,32 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: substrate-postgres-init
+data:
+  # Runs once, as superuser, in database atepg, after initdb.
+  # Roles are also declared on the Cluster so later reconciliation keeps them.
+  init.sql: |
+    DO $$
+    BEGIN
+      IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = 'substrate_owner') THEN
+        CREATE ROLE substrate_owner NOLOGIN;
+      END IF;
+      IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = 'substrate_readwrite') THEN
+        CREATE ROLE substrate_readwrite NOLOGIN;
+      END IF;
+    END
+    $$;
+    GRANT substrate_owner TO postgres WITH SET TRUE;
+    GRANT substrate_owner TO substrate WITH SET TRUE;
+    GRANT substrate_readwrite TO substrate WITH SET TRUE;
+    CREATE SCHEMA IF NOT EXISTS substrate AUTHORIZATION substrate_owner;
+    GRANT USAGE ON SCHEMA substrate TO substrate_readwrite;
+    ALTER DEFAULT PRIVILEGES FOR ROLE substrate_owner IN SCHEMA substrate
+      GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO substrate_readwrite;
+    ALTER DEFAULT PRIVILEGES FOR ROLE substrate_owner IN SCHEMA substrate
+      GRANT USAGE, SELECT, UPDATE ON SEQUENCES TO substrate_readwrite;
+    ALTER DEFAULT PRIVILEGES FOR ROLE substrate_owner IN SCHEMA substrate
+      GRANT EXECUTE ON ROUTINES TO substrate_readwrite;
+    ALTER DEFAULT PRIVILEGES FOR ROLE substrate_owner IN SCHEMA substrate
+      GRANT USAGE ON TYPES TO substrate_readwrite;
