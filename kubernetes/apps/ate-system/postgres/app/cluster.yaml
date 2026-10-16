@@ -1,0 +1,44 @@
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/postgresql.cnpg.io/cluster_v1.json
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: substrate
+spec:
+  instances: 1
+  # renovate: datasource=docker depName=ghcr.io/cloudnative-pg/postgresql
+  imageName: ghcr.io/cloudnative-pg/postgresql:18.6-system-trixie@sha256:99bc64e413d59b017d169ce2ff25746f1d68c5d7210a19f12c0464a109216ee1
+  enablePDB: false
+  monitoring:
+    enablePodMonitor: true
+  postgresql:
+    parameters:
+      max_connections: "40"
+      shared_buffers: 128MB
+  bootstrap:
+    initdb:
+      database: atepg
+      owner: substrate
+      postInitApplicationSQLRefs:
+        configMapRefs:
+          - name: substrate-postgres-init
+            key: init.sql
+  managed:
+    roles:
+      - name: substrate_owner
+        ensure: present
+        login: false
+        comment: Schema owner ateapi assumes for migrations
+      - name: substrate_readwrite
+        ensure: present
+        login: false
+        comment: Role ateapi assumes for application queries
+  storage:
+    size: 10Gi
+    storageClass: ceph-block
+  resources:
+    requests:
+      cpu: 100m
+      memory: 512Mi
+    limits:
+      memory: 1Gi
