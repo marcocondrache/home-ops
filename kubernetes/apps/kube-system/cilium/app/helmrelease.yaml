@@ -39,9 +39,6 @@ spec:
         enabled: false
       hostRoot: /sys/fs/cgroup
 
-    l2announcements:
-      enabled: false
-
     endpointRoutes:
       enabled: true
 
@@ -70,7 +67,6 @@ spec:
       dashboards:
         enabled: true
       prometheus:
-        enabled: true
         serviceMonitor:
           enabled: true
 
