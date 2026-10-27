@@ -12,6 +12,7 @@ spec:
   values:
     config:
       repo: github://marcocondrache/home-ops
+      clusterPath: kubernetes/apps
       statusChecks: true
       prComments: true
       publicUrl: https://{{ .Release.Name }}.labx.sh
