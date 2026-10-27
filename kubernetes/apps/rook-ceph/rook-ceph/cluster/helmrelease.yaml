@@ -20,15 +20,12 @@ spec:
           mon_osd_min_down_reporters: "1"
       cleanupPolicy:
         wipeDevicesFromOtherClusters: true
-      crashCollector:
-        disable: false
       csi:
         cephfs:
           kernelMountOptions: ms_mode=prefer-crc
         readAffinity:
           enabled: false # https://github.com/ceph/ceph-csi/issues/5772
       dashboard:
-        enabled: true
         urlPrefix: /
         ssl: false
         prometheusEndpoint: http://prometheus-operated.o11y.svc.cluster.local:9090
@@ -63,7 +60,6 @@ spec:
       storage:
         devicePathFilter: "^/dev/disk/by-path/pci-.*-nvme-1$"
         useAllDevices: false
-        useAllNodes: true
     monitoring:
       enabled: true
       createPrometheusRules: true
@@ -73,8 +69,6 @@ spec:
       dashboard:
         host:
           name: rook.labx.sh
-          path: /
-          pathType: PathPrefix
         parentRefs:
           - name: envoy-internal
             namespace: network
@@ -87,7 +81,6 @@ spec:
         storageClass:
           enabled: true
           name: ceph-block
-          allowVolumeExpansion: true
           isDefault: true
           mountOptions:
             - discard
@@ -104,12 +97,9 @@ spec:
             csi.storage.k8s.io/provisioner-secret-namespace: "{{ .Release.Namespace }}"
             imageFeatures: deep-flatten,exclusive-lock,fast-diff,layering,object-map
             imageFormat: "2"
-          reclaimPolicy: Delete
-          volumeBindingMode: Immediate
     cephBlockPoolsVolumeSnapshotClass:
       enabled: true
       name: csi-ceph-blockpool
-      deletionPolicy: Delete
       isDefault: true
     cephFileSystems: []
     cephObjectStores: []
