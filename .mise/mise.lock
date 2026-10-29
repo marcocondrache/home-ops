@@ -35,6 +35,25 @@ url = "https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_
 url_api = "https://api.github.com/repos/rhysd/actionlint/releases/assets/384924893"
 provenance = "github-attestations"
 
+[[tools."github:elsesiy/kubectl-view-secret"]]
+version = "0.16.0"
+backend = "github:elsesiy/kubectl-view-secret"
+
+[tools."github:elsesiy/kubectl-view-secret"."platforms.linux-arm64"]
+checksum = "sha256:04644e43378f74a09cf60a081759e8b8bbe8281924c0dc20dab31e9d00ab0f37"
+url = "https://github.com/elsesiy/kubectl-view-secret/releases/download/v0.16.0/kubectl-view-secret_v0.16.0_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/elsesiy/kubectl-view-secret/releases/assets/403112648"
+
+[tools."github:elsesiy/kubectl-view-secret"."platforms.linux-x64"]
+checksum = "sha256:dad8f7d257e17e0a382f139bd756cdb437268d77973ad8ba3c55b346ce5bdd92"
+url = "https://github.com/elsesiy/kubectl-view-secret/releases/download/v0.16.0/kubectl-view-secret_v0.16.0_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/elsesiy/kubectl-view-secret/releases/assets/403112645"
+
+[tools."github:elsesiy/kubectl-view-secret"."platforms.macos-arm64"]
+checksum = "sha256:53ab023f7b60396c790a396f6a3bc33e173b5ebf14081cfac18354a0d23264d4"
+url = "https://github.com/elsesiy/kubectl-view-secret/releases/download/v0.16.0/kubectl-view-secret_v0.16.0_darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/elsesiy/kubectl-view-secret/releases/assets/403112653"
+
 [[tools."github:home-operations/flate"]]
 version = "0.6.5"
 backend = "github:home-operations/flate"
@@ -60,21 +79,75 @@ backend = "github:mitsuhiko/minijinja"
 
 [tools."github:mitsuhiko/minijinja"."platforms.linux-arm64"]
 checksum = "sha256:3deb041ea4d304654da6097ba30ec096362ac568a36fea6a84d9d3c455eed04b"
-checksum_source = "mise-versions"
 url = "https://github.com/mitsuhiko/minijinja/releases/download/3.0.4/minijinja-cli-aarch64-unknown-linux-gnu.tar.xz"
 url_api = "https://api.github.com/repos/mitsuhiko/minijinja/releases/assets/679698134"
 
 [tools."github:mitsuhiko/minijinja"."platforms.linux-x64"]
 checksum = "sha256:f103f5b53156bbcf94f82427979a476497d85de50158a3598996962722bab6d6"
-checksum_source = "mise-versions"
 url = "https://github.com/mitsuhiko/minijinja/releases/download/3.0.4/minijinja-cli-x86_64-unknown-linux-gnu.tar.xz"
 url_api = "https://api.github.com/repos/mitsuhiko/minijinja/releases/assets/679698186"
 
 [tools."github:mitsuhiko/minijinja"."platforms.macos-arm64"]
 checksum = "sha256:0ae08cce1d8ecea4c1d059e7540609c6dfce1b7a76689ba2f2e5a5e0fbd9c9fb"
-checksum_source = "mise-versions"
 url = "https://github.com/mitsuhiko/minijinja/releases/download/3.0.4/minijinja-cli-aarch64-apple-darwin.tar.xz"
 url_api = "https://api.github.com/repos/mitsuhiko/minijinja/releases/assets/679698108"
+
+[[tools.gum]]
+version = "2.0.2"
+backend = "aqua:charmbracelet/gum"
+
+[tools.gum."platforms.linux-arm64"]
+checksum = "sha256:8ebf8b54ec1e8c81f2bb58b59ff9b70998186a4d11375f0cf357b80e0ccfa1d5"
+url = "https://github.com/charmbracelet/gum/releases/download/v2.0.2/gum_2.0.2_Linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/charmbracelet/gum/releases/assets/585508724"
+provenance = "cosign"
+
+[tools.gum."platforms.linux-x64"]
+checksum = "sha256:d842e06d93dbed90af48cb8dd10698db6f22e331fc40346bb37bbc753109edc2"
+url = "https://github.com/charmbracelet/gum/releases/download/v2.0.2/gum_2.0.2_Linux_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/charmbracelet/gum/releases/assets/585508723"
+provenance = "cosign"
+
+[tools.gum."platforms.macos-arm64"]
+checksum = "sha256:4777a69b1170b8db23c95d5889fb32186cfda1a3ac950d339aa17e3513633890"
+url = "https://github.com/charmbracelet/gum/releases/download/v2.0.2/gum_2.0.2_Darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/charmbracelet/gum/releases/assets/585508714"
+provenance = "cosign"
+
+[[tools.helm]]
+version = "4.3.1"
+backend = "aqua:helm/helm"
+
+[tools.helm."platforms.linux-arm64"]
+checksum = "sha256:8cf8f66ecbc252ac8f7f06cca68aba88508ddfde3a6a34feb1678ad1694b4f88"
+url = "https://get.helm.sh/helm-v4.3.1-linux-arm64.tar.gz"
+
+[tools.helm."platforms.linux-x64"]
+checksum = "sha256:0403a88ae20913d11b10a2467b50087721fea7581736da6b9d3992f5357fe54b"
+url = "https://get.helm.sh/helm-v4.3.1-linux-amd64.tar.gz"
+
+[tools.helm."platforms.macos-arm64"]
+checksum = "sha256:6b4e61c8cd27d99e5a801e63ff25dd5c70b36875c2cd659d3e9ce6b76fc23198"
+url = "https://get.helm.sh/helm-v4.3.1-darwin-arm64.tar.gz"
+
+[[tools.helmfile]]
+version = "1.8.2"
+backend = "packslip:github.com/helmfile/helmfile"
+
+[tools.helmfile."platforms.linux-arm64"]
+checksum = "sha256:9163f0d7ad088d243d7305ba09c3465aac02dfebd658d46c62dbdaa11c224b16"
+url = "https://github.com/helmfile/helmfile/releases/download/v1.8.2/helmfile_1.8.2_linux_arm64.tar.gz"
+signer = "sigstore-oidc:https://github.com/helmfile/helmfile/.github/workflows/releaser.yaml"
+
+[tools.helmfile."platforms.linux-x64"]
+checksum = "sha256:f179485c5bb9f8e20fbd8ea16d8807915988aba4d60131ee864fb3232452716e"
+url = "https://github.com/helmfile/helmfile/releases/download/v1.8.2/helmfile_1.8.2_linux_amd64.tar.gz"
+signer = "sigstore-oidc:https://github.com/helmfile/helmfile/.github/workflows/releaser.yaml"
+
+[tools.helmfile."platforms.macos-arm64"]
+checksum = "sha256:0e788f4aa7b4eea1ec0d1e278e0e66e845d5733be5f4e6cb7f832c779e656c72"
+url = "https://github.com/helmfile/helmfile/releases/download/v1.8.2/helmfile_1.8.2_darwin_arm64.tar.gz"
+signer = "sigstore-oidc:https://github.com/helmfile/helmfile/.github/workflows/releaser.yaml"
 
 [[tools.jq]]
 version = "1.8.2"
@@ -132,6 +205,25 @@ url = "https://dl.k8s.io/v1.37.1/bin/linux/amd64/kubectl"
 [tools.kubectl."platforms.macos-arm64"]
 checksum = "sha256:fd65982c97ddad3106754b69ffa196d0e543aa591930ae52aed1adfb92f8c77f"
 url = "https://dl.k8s.io/v1.37.1/bin/darwin/arm64/kubectl"
+
+[[tools.kustomize]]
+version = "5.8.3"
+backend = "aqua:kubernetes-sigs/kustomize"
+
+[tools.kustomize."platforms.linux-arm64"]
+checksum = "sha256:9867b76482cfc6d25b546abc1d2b5a32bd137505aba640649b4b378f64f6d68f"
+url = "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize/v5.8.3/kustomize_v5.8.3_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/kubernetes-sigs/kustomize/releases/assets/621661325"
+
+[tools.kustomize."platforms.linux-x64"]
+checksum = "sha256:cb9e31198d3f63b44848bd0afc4c8efc56e6cfef9c93a4a39a211940e6decd61"
+url = "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize/v5.8.3/kustomize_v5.8.3_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/kubernetes-sigs/kustomize/releases/assets/621661332"
+
+[tools.kustomize."platforms.macos-arm64"]
+checksum = "sha256:4cbb08e209d8fff47cd60bfb6407daaf5ee699f9b9295849a1065024fac2d1ef"
+url = "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize/v5.8.3/kustomize_v5.8.3_darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/kubernetes-sigs/kustomize/releases/assets/621661327"
 
 [[tools.lefthook]]
 version = "2.2.2"
