@@ -1,0 +1,73 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: actual-mcp
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: actual-mcp
+  interval: 1h
+  values:
+    controllers:
+      actual-mcp:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: docker.io/sstefanov/actual-mcp
+              tag: v1.15.1@sha256:9d6b216146fcd5f59303945d4f47ee6cbfbdc12a4f6a66f52029507e4ad0cb93
+            args: ["--sse", "--enable-bearer", "--port", "3000"]
+            env:
+              ACTUAL_DATA_DIR: /data
+              ACTUAL_SERVER_URL: http://actual.default.svc.cluster.local:5006
+              TMPDIR: /tmp
+              TZ: Europe/Rome
+            envFrom:
+              - secretRef:
+                  name: "{{ .Release.Name }}-secret"
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+              startup:
+                enabled: true
+                spec:
+                  failureThreshold: 30
+                  periodSeconds: 10
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 512Mi
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+    service:
+      app:
+        ports:
+          http:
+            port: 3000
+    route:
+      app:
+        hostnames:
+          - "{{ .Release.Name }}.labx.sh"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+    persistence:
+      data:
+        type: emptyDir
+      tmp:
+        type: emptyDir
