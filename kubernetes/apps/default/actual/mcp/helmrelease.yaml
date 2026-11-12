@@ -19,7 +19,7 @@ spec:
             image:
               repository: docker.io/sstefanov/actual-mcp
               tag: v1.15.1@sha256:9d6b216146fcd5f59303945d4f47ee6cbfbdc12a4f6a66f52029507e4ad0cb93
-            args: ["--sse", "--enable-bearer", "--port", "3000"]
+            args: ["--sse", "--enable-bearer", "--enable-write", "--port", "3000"]
             env:
               ACTUAL_DATA_DIR: /data
               ACTUAL_SERVER_URL: http://actual.default.svc.cluster.local:5006
