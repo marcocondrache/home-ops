@@ -31,3 +31,4 @@ resources:
   - ./chaski/ks.yaml
   - ./smtp-relay/ks.yaml
   - ./unifi-mcp/ks.yaml
+  - ./actual/ks.yaml
