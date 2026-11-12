@@ -21,7 +21,7 @@ spec:
               tag: v1.15.1@sha256:9d6b216146fcd5f59303945d4f47ee6cbfbdc12a4f6a66f52029507e4ad0cb93
             args: ["--sse", "--enable-bearer", "--enable-write", "--port", "3000"]
             env:
-              ACTUAL_BUDGET_SYNC_ID: d3ed901b-4e4a-4251-b67a-03b50b59ee76
+              ACTUAL_BUDGET_SYNC_ID: d76b2292-c861-4fda-8b8d-b01c44feb019
               ACTUAL_DATA_DIR: /data
               ACTUAL_SERVER_URL: http://actual.default.svc.cluster.local:5006
               TMPDIR: /tmp
