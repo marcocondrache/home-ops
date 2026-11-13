@@ -33,3 +33,4 @@ resources:
   - ./smtp-relay/ks.yaml
   - ./unifi-mcp/ks.yaml
   - ./actual/ks.yaml
+  - ./kubernetes-mcp/ks.yaml
