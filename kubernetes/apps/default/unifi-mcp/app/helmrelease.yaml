@@ -22,7 +22,7 @@ spec:
             env:
               TZ: Europe/Rome
               UNIFI_HOST: unifi.network.internal
-              UNIFI_MCP_ALLOWED_HOSTS: localhost,127.0.0.1,unifi-mcp.labx.sh
+              UNIFI_MCP_ALLOWED_HOSTS: localhost,127.0.0.1,unifi-mcp.labx.sh,unifi-mcp.default.svc.cluster.local,unifi-mcp.default.svc.cluster.local:3000
               UNIFI_MCP_HOST: 0.0.0.0
               UNIFI_MCP_HTTP_ENABLED: true
             envFrom:

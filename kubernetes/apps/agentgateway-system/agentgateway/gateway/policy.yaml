@@ -1,0 +1,30 @@
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/agentgateway.dev/agentgatewaypolicy_v1alpha1.json
+apiVersion: agentgateway.dev/v1alpha1
+kind: AgentgatewayPolicy
+metadata:
+  name: agentgateway-mcp
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: agentgateway-mcp
+  traffic:
+    cors:
+      allowHeaders: [authorization, content-type, mcp-protocol-version, mcp-session-id]
+      allowMethods: [GET, POST, DELETE, OPTIONS]
+      allowOrigins: ["*"]
+      exposeHeaders: [mcp-session-id]
+    jwtAuthentication:
+      mode: Strict
+      providers:
+        - issuer: https://id.labx.sh
+          audiences: [https://mcp.labx.sh]
+          jwks:
+            remote:
+              url: http://pocket-id.default.svc.cluster.local:1411/.well-known/jwks.json
+      mcp:
+        resourceMetadata:
+          resource: https://mcp.labx.sh
+          scopesSupported: [openid, offline_access]
+          bearerMethodsSupported: [header]

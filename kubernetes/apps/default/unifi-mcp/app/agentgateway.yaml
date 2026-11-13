@@ -1,0 +1,54 @@
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/agentgateway.dev/agentgatewaybackend_v1alpha1.json
+apiVersion: agentgateway.dev/v1alpha1
+kind: AgentgatewayBackend
+metadata:
+  name: unifi-mcp
+spec:
+  mcp:
+    targets:
+      - name: unifi
+        static:
+          host: unifi-mcp.default.svc.cluster.local
+          port: 3000
+          path: /mcp
+          protocol: StreamableHTTP
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/gateway.networking.k8s.io/httproute_v1.json
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: unifi-mcp-agentgateway
+spec:
+  parentRefs:
+    - name: agentgateway-mcp
+      namespace: agentgateway-system
+  rules:
+    - matches:
+        - path:
+            type: Exact
+            value: /unifi
+        - path:
+            type: Exact
+            value: /.well-known/oauth-protected-resource/unifi
+      backendRefs:
+        - group: agentgateway.dev
+          kind: AgentgatewayBackend
+          name: unifi-mcp
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/agentgateway.dev/agentgatewaypolicy_v1alpha1.json
+apiVersion: agentgateway.dev/v1alpha1
+kind: AgentgatewayPolicy
+metadata:
+  name: unifi-mcp
+spec:
+  targetRefs:
+    - group: agentgateway.dev
+      kind: AgentgatewayBackend
+      name: unifi-mcp
+      sectionName: unifi
+  backend:
+    auth:
+      secretRef:
+        name: unifi-mcp-secret
+        key: UNIFI_MCP_HTTP_AUTH_TOKEN

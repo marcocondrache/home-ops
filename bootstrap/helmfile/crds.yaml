@@ -21,6 +21,11 @@ bases:
 defaultInherit: default
 
 releases:
+  # Version follows the controller OCIRepository; only the chart differs
+  - name: agentgateway
+    namespace: agentgateway-system
+    chart: oci://cr.agentgateway.dev/charts/agentgateway-crds
+
   - name: envoy-gateway
     namespace: network
 
@@ -35,6 +40,3 @@ releases:
 
   - name: snapshot-controller
     namespace: kube-system
-
-  - name: kubeai
-    namespace: ai-system
