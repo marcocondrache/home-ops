@@ -18,6 +18,7 @@ resources:
   - ./recyclarr/ks.yaml
   - ./home-assistant/ks.yaml
   - ./papra/ks.yaml
+  - ./pocket-id/ks.yaml
   - ./plex/ks.yaml
   - ./radarr/ks.yaml
   - ./prowlarr/ks.yaml
