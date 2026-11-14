@@ -21,13 +21,22 @@ spec:
               tag: v2.19.2-distroless@sha256:a21166a4eb513d2ffcbf815398480998d996a9e719cfba029395517658626f9e
             env:
               ALLOW_INSECURE_CALLBACK_URLS: false
+              ALLOW_USER_SIGNUPS: disabled
               ANALYTICS_DISABLED: true
               APP_URL: https://id.labx.sh
               AUDIT_LOG_RETENTION_DAYS: 365
+              CIMD_URL_ALLOWLIST: '["https://claude.ai/oauth/*"]'
               CLOUDFLARE_LOCATION_HEADERS: true
+              EMAIL_API_KEY_EXPIRATION_ENABLED: true
+              EMAIL_LOGIN_NOTIFICATION_MODE: browserRecognition
+              EMAIL_ONE_TIME_ACCESS_AS_ADMIN_ENABLED: false
+              EMAIL_ONE_TIME_ACCESS_AS_UNAUTHENTICATED_ENABLED: false
               PORT: &port 1411
+              SMTP_HOST: smtp-relay.default.svc.cluster.local
+              SMTP_PORT: 25
               TRUST_PROXY: 10.42.0.0/16,fdf3:0f3a:242e:42::/108
               TZ: Europe/Rome
+              UI_CONFIG_DISABLED: true
               VERSION_CHECK_DISABLED: true
             envFrom:
               - secretRef:
