@@ -10,18 +10,12 @@ spec:
     name: flux-instance
   interval: 1h
   values:
+    commonAnnotations:
+      fluxcd.controlplane.io/reconcileArtifactEvery: 1h
     instance:
-      distribution:
-        artifact: oci://ghcr.io/controlplaneio-fluxcd/flux-operator-manifests:v0.62.1
       cluster:
         networkPolicy: false
-      components:
-        - source-controller
-        - kustomize-controller
-        - helm-controller
-        - notification-controller
       sync:
-        kind: GitRepository
         url: https://github.com/marcocondrache/home-ops
         ref: refs/heads/main
         path: kubernetes/apps
