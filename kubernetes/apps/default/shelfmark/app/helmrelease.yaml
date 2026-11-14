@@ -44,14 +44,12 @@ spec:
                   httpGet:
                     path: /api/health
                     port: &port 8084
-                  periodSeconds: 10
                   timeoutSeconds: 5
                   failureThreshold: 5
               startup:
                 enabled: true
                 spec:
                   failureThreshold: 30
-                  periodSeconds: 10
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
@@ -87,8 +85,6 @@ spec:
         type: nfs
         server: nas.labx.internal
         path: /mnt/tank/media
-        globalMounts:
-          - path: /media
       tmp:
         type: emptyDir
         globalMounts:

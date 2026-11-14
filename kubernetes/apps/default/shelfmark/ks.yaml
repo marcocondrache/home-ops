@@ -6,8 +6,8 @@ metadata:
   name: shelfmark
 spec:
   components:
-    - ../../../../components/zeroscaler
     - ../../../../components/kopiur/backup
+    - ../../../../components/zeroscaler
   interval: 1h
   path: ./kubernetes/apps/default/shelfmark/app
   postBuild:
@@ -19,4 +19,3 @@ spec:
     name: flux-system
     namespace: flux-system
   targetNamespace: default
-  wait: false

@@ -1,3 +1,4 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -91,6 +92,7 @@ spec:
               - type: RequestHeaderModifier
                 requestHeaderModifier: &pipeline
                   set:
+                    # Plex closes idle keep-alive connections after 20s unless this is set, so Envoy owns the pool
                     - name: X-Plex-Http-Pipeline
                       value: infinite
           - name: events
