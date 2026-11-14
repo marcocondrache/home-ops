@@ -39,8 +39,8 @@ spec:
                   httpGet:
                     path: /ready
                     port: &port 8080
-                  timeoutSeconds: 1
-                  failureThreshold: 3
+                  timeoutSeconds: 5
+                  failureThreshold: 5
               readiness: *probes
             securityContext:
               allowPrivilegeEscalation: false
