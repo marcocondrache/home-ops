@@ -1,3 +1,4 @@
+---
 # yaml-language-server: $schema=https://k8s-schemas.home-operations.com/gateway.envoyproxy.io/backendtrafficpolicy_v1alpha1.json
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: BackendTrafficPolicy
@@ -26,6 +27,7 @@ spec:
     - group: gateway.networking.k8s.io
       kind: HTTPRoute
       name: plex
+      # requestBuffer hangs WebSocket upgrades, so this rule-level policy replaces the route-level one without it
       sectionName: events
   timeout:
     http:

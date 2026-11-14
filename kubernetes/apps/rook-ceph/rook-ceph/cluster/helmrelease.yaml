@@ -23,16 +23,10 @@ spec:
       csi:
         cephfs:
           kernelMountOptions: ms_mode=prefer-crc
-        readAffinity:
-          enabled: false # https://github.com/ceph/ceph-csi/issues/5772
       dashboard:
         urlPrefix: /
         ssl: false
         prometheusEndpoint: http://prometheus-operated.o11y.svc.cluster.local:9090
-      mgr:
-        modules:
-          - name: pg_autoscaler
-            enabled: true
       mon:
         count: 1
       network:
@@ -52,7 +46,7 @@ spec:
             keyRotationPolicy: KeyGeneration
             keyGeneration: 2
             keepPriorKeyCountMax: 0
-            keyType: aes256k
+            keyType: aes256k # Talos 1.14+ backports the kernel 7.0 aes256k support
           rbdMirrorPeer:
             keyRotationPolicy: KeyGeneration
             keyGeneration: 2

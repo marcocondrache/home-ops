@@ -27,6 +27,9 @@ spec:
       name: actions-runner-controller
       namespace: actions-runner-system
     template:
+      metadata:
+        labels:
+          runner: *name
       spec:
         containers:
           - name: runner

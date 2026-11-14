@@ -10,100 +10,72 @@ spec:
     name: cilium
   interval: 1h
   values:
-    ipam:
-      mode: kubernetes
-
-    k8s:
-      requireIPv4PodCIDR: true
-      requireIPv6PodCIDR: true
-
-    k8sServiceHost: 127.0.0.1
-    k8sServicePort: 7445
-
-    kubeProxyReplacement: true
-    kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
-
-    ipv4NativeRoutingCIDR: 10.42.0.0/16
-    ipv6NativeRoutingCIDR: fdf3:0f3a:242e:42::/108
-
-    routingMode: native
-    devices: bond+
-
     autoDirectNodeRoutes: true
-
-    cni:
-      exclusive: false
-
+    bandwidthManager:
+      enabled: true
+      bbr: true
+    bpf:
+      datapathMode: netkit
+      masquerade: true
+      preallocateMaps: true
+    bpfClockProbe: true
+    bgpControlPlane:
+      enabled: true
     cgroup:
       autoMount:
         enabled: false
       hostRoot: /sys/fs/cgroup
-
-    endpointRoutes:
-      enabled: true
-
-    loadBalancer:
-      mode: dsr
-      algorithm: maglev
-
-    rollOutCiliumPods: true
-
-    bandwidthManager:
-      enabled: true
-      bbr: true
-
-    envoy:
-      enabled: false
-
-    localRedirectPolicies:
-      enabled: true
-
+    cni:
+      exclusive: false
     dashboards:
       enabled: true
-
+    devices: bond+
+    enableIPv4BIGTCP: true
+    enableIPv6BIGTCP: true
+    endpointRoutes:
+      enabled: true
+    envoy:
+      enabled: false
+    hubble:
+      enabled: false
+    ipam:
+      mode: kubernetes
+    ipv4:
+      enabled: true
+    ipv4NativeRoutingCIDR: 10.42.0.0/16
+    ipv6:
+      enabled: true
+    ipv6NativeRoutingCIDR: fdf3:0f3a:242e:42::/108
+    k8s:
+      requireIPv4PodCIDR: true
+      requireIPv6PodCIDR: true
+    k8sServiceHost: 127.0.0.1
+    k8sServicePort: 7445
+    kubeProxyReplacement: true
+    kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
+    loadBalancer:
+      algorithm: maglev
+      mode: dsr
+      serviceTopology: true # spegel-registry relies on trafficDistribution: PreferSameNode
+    localRedirectPolicies:
+      enabled: true
     operator:
-      replicas: 1
-      rollOutPods: true
       dashboards:
         enabled: true
       prometheus:
         serviceMonitor:
           enabled: true
-
-    bpfClockProbe: true
-
+      replicas: 1
+      rollOutPods: true
     pmtuDiscovery:
       enabled: true
-
-    bgpControlPlane:
-      enabled: true
-
-    bpf:
-      masquerade: true
-      datapathMode: netkit
-      preallocateMaps: true
-
-    ipv4:
-      enabled: true
-    ipv6:
-      enabled: true
-
-    enableIPv4BIGTCP: true
-    enableIPv6BIGTCP: true
-
     prometheus:
       enabled: true
       serviceMonitor:
         enabled: true
         trustCRDsExist: true
-
-    hubble:
-      enabled: false
-
-    socketLB:
-      enabled: true
-      hostNamespaceOnly: true
-
+    rollOutCiliumPods: true
+    routingMode: native
     securityContext:
       capabilities:
         ciliumAgent:
@@ -124,3 +96,6 @@ spec:
           - NET_ADMIN
           - SYS_ADMIN
           - SYS_RESOURCE
+    socketLB:
+      enabled: true
+      hostNamespaceOnly: true
