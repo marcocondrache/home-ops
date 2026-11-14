@@ -7,6 +7,9 @@ metadata:
 spec:
   components:
     - ../../../../components/kopiur/backup
+  dependsOn:
+    - name: multus-networks
+      namespace: kube-system
   interval: 1h
   path: ./kubernetes/apps/default/home-assistant/app
   postBuild:
