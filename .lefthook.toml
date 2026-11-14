@@ -2,3 +2,11 @@
 git_url = "https://github.com/home-operations/.github"
 ref = "main"
 configs = ["lefthook.common.toml"]
+
+[commit-msg.commands.conventional]
+run = '''
+head -1 {1} | grep -Eq '^((feat|fix|chore|docs|refactor|perf|test|build|ci|style|revert)(\([a-z0-9._/-]+\))?!?: .+|Merge |Revert ")' || {
+  echo "commit subject must be a conventional commit, e.g. 'fix(gatus): correct checks' or 'chore: bump x'"
+  exit 1
+}
+'''
