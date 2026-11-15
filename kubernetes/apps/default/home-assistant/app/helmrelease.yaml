@@ -21,8 +21,6 @@ spec:
               tag: 2026.11.1@sha256:c129b1e4190273254d93d413fe2a083233c9202d84cb08f84dddb01861df432e
             env:
               TZ: Europe/Rome
-              HASS_HTTP_TRUSTED_PROXY_1: 10.0.30.0/24
-              HASS_HTTP_TRUSTED_PROXY_2: 10.42.0.0/16
               HASS_REMOTE_URL: https://hass.labx.sh
             envFrom:
               - secretRef:
@@ -56,7 +54,7 @@ spec:
         type: LoadBalancer
         annotations:
           lbipam.cilium.io/ips: 10.0.90.20
-          externalTrafficPolicy: Local
+        externalTrafficPolicy: Local
         ports:
           http:
             appProtocol: kubernetes.io/ws
