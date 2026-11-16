@@ -16,6 +16,8 @@ resources:
   - ./cleanrr/ks.yaml
   - ./dpc-exporter/ks.yaml
   - ./recyclarr/ks.yaml
+  - ./mosquitto/ks.yaml
+  - ./zigbee/ks.yaml
   - ./home-assistant/ks.yaml
   - ./papra/ks.yaml
   - ./pocket-id/ks.yaml
