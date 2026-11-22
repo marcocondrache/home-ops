@@ -2,6 +2,8 @@
 customization:
   extraKernelArgs:
     - -selinux
+    - selinux=0
+    - audit=0
     - amd_iommu=on
     - amd_pstate=active
     - iommu.passthrough=1
