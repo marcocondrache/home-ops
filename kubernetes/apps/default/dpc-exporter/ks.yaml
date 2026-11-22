@@ -9,7 +9,7 @@ spec:
   path: ./kubernetes/apps/default/dpc-exporter/app
   prune: true
   sourceRef:
-    kind: GitRepository
-    name: flux-system
+    kind: ExternalArtifact
+    name: dpc-exporter
     namespace: flux-system
   targetNamespace: default

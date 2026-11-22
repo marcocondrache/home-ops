@@ -14,8 +14,8 @@ spec:
   path: ./kubernetes/apps/agentgateway-system/agentgateway/app
   prune: true
   sourceRef:
-    kind: GitRepository
-    name: flux-system
+    kind: ExternalArtifact
+    name: agentgateway
     namespace: flux-system
   targetNamespace: agentgateway-system
 ---
@@ -31,7 +31,7 @@ spec:
   path: ./kubernetes/apps/agentgateway-system/agentgateway/gateway
   prune: true
   sourceRef:
-    kind: GitRepository
-    name: flux-system
+    kind: ExternalArtifact
+    name: agentgateway
     namespace: flux-system
   targetNamespace: agentgateway-system
