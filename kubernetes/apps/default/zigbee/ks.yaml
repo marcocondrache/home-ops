@@ -19,7 +19,7 @@ spec:
       ZEROSCALER_JOB_NAME: zigbee_probe
   prune: true
   sourceRef:
-    kind: GitRepository
-    name: flux-system
+    kind: ExternalArtifact
+    name: zigbee
     namespace: flux-system
   targetNamespace: default

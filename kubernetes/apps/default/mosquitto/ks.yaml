@@ -15,7 +15,7 @@ spec:
       APP: mosquitto
   prune: true
   sourceRef:
-    kind: GitRepository
-    name: flux-system
+    kind: ExternalArtifact
+    name: mosquitto
     namespace: flux-system
   targetNamespace: default

@@ -12,7 +12,7 @@ spec:
       APP: pdf
   prune: true
   sourceRef:
-    kind: GitRepository
-    name: flux-system
+    kind: ExternalArtifact
+    name: pdf
     namespace: flux-system
   targetNamespace: default

@@ -14,7 +14,7 @@ spec:
       APP: deduparr
   prune: true
   sourceRef:
-    kind: GitRepository
-    name: flux-system
+    kind: ExternalArtifact
+    name: deduparr
     namespace: flux-system
   targetNamespace: default

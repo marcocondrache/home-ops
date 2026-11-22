@@ -14,8 +14,8 @@ spec:
       APP: actual
   prune: true
   sourceRef:
-    kind: GitRepository
-    name: flux-system
+    kind: ExternalArtifact
+    name: actual
     namespace: flux-system
   targetNamespace: default
 ---
@@ -32,7 +32,7 @@ spec:
       APP: actual-mcp
   prune: true
   sourceRef:
-    kind: GitRepository
-    name: flux-system
+    kind: ExternalArtifact
+    name: actual
     namespace: flux-system
   targetNamespace: default
