@@ -6,13 +6,14 @@ metadata:
   name: plex
 spec:
   components:
-    - ../../../../components/kopiur/backup
+    - ../../../../components/kopiur/statefulset
     - ../../../../components/zeroscaler
   interval: 1h
   path: ./kubernetes/apps/default/plex/app
   postBuild:
     substitute:
       APP: plex
+      CONTROLLER: StatefulSet
       KOPIUR_CAPACITY: 50Gi
   prune: true
   sourceRef:
