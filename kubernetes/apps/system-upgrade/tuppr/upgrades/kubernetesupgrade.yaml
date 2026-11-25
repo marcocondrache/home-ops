@@ -21,3 +21,7 @@ spec:
       kind: CephCluster
       expr: |-
         status.ceph.health in ['HEALTH_OK']
+    - apiVersion: miroir.home-operations.com/v1alpha1
+      kind: MiroirVolume
+      expr: |-
+        status.phase == 'Ready'
