@@ -18,6 +18,7 @@ resources:
   - ./mosquitto/ks.yaml
   - ./zigbee/ks.yaml
   - ./home-assistant/ks.yaml
+  - ./home-assistant-mcp/ks.yaml
   - ./papra/ks.yaml
   - ./pocket-id/ks.yaml
   - ./plex/ks.yaml

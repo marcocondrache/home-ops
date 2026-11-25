@@ -75,4 +75,5 @@ spec:
             port: *port
     persistence:
       config:
-        existingClaim: "{{ .Release.Name }}"
+        type: emptyDir
+        sizeLimit: 1Gi
