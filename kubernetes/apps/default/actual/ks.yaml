@@ -25,6 +25,9 @@ kind: Kustomization
 metadata:
   name: actual-mcp
 spec:
+  dependsOn:
+    - name: kmcp
+      namespace: kmcp-system
   interval: 1h
   path: ./kubernetes/apps/default/actual/mcp
   postBuild:

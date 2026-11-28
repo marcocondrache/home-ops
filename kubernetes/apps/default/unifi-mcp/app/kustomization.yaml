@@ -5,4 +5,4 @@ kind: Kustomization
 resources:
   - ./agentgateway.yaml
   - ./externalsecret.yaml
-  - ./helmrelease.yaml
+  - ./mcpserver.yaml
