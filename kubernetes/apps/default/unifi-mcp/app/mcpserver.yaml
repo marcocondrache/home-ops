@@ -16,6 +16,8 @@ spec:
       UNIFI_HOST: unifi.network.internal
       UNIFI_MCP_ALLOWED_HOSTS: localhost,127.0.0.1,unifi-mcp.default.svc.cluster.local,unifi-mcp.default.svc.cluster.local:3000
       UNIFI_MCP_HOST: 0.0.0.0
+      # kmcp leaves service links on, and the unifi-mcp Service injects UNIFI_MCP_PORT=tcp://...
+      UNIFI_MCP_PORT: "3000"
       UNIFI_MCP_HTTP_ENABLED: "true"
       UNIFI_NETWORK_WEBSOCKET_ENABLED: "false"
     secretRefs:
