@@ -19,7 +19,7 @@ resources:
   - ./zigbee/ks.yaml
   - ./home-assistant/ks.yaml
   - ./home-assistant-mcp/ks.yaml
-  - ./matter-hub/ks.yaml
+  - ./home-assistant-matter/ks.yaml
   - ./papra/ks.yaml
   - ./pocket-id/ks.yaml
   - ./plex/ks.yaml

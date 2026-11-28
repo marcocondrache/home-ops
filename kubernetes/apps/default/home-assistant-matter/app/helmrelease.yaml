@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: matter-hub
+  name: home-assistant-matter
 spec:
   chart:
     kind: OCIRepository
@@ -14,7 +14,7 @@ spec:
   interval: 1h
   values:
     controllers:
-      matter-hub:
+      home-assistant-matter:
         type: statefulset
         annotations:
           reloader.stakater.com/auto: "true"
