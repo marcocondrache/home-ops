@@ -101,24 +101,12 @@ image="$(mise run //talos:machine-image "$usage_node")"
 talosctl -n "$usage_node" upgrade -i "$image" -m force --timeout=10m "${args[@]}"
 '''
 
-[tasks.schematic-file]
-hide = true
-usage = 'arg "[node]"'
-run = '''
-file="schematic.yaml.j2"
-if [[ -n "${usage_node:-}" ]]; then
-    for f in nodes/*/"${usage_node}".schematic.yaml.j2; do
-        [[ -f "$f" ]] && file="$f"
-    done
-fi
-echo "$file"
-'''
-
 [tasks.schematic-id]
 hide = true
 usage = 'arg "[node]"'
 run = '''
-file="$(mise run //talos:schematic-file "${usage_node:-}")"
+file="schematics/${usage_node:-}.yaml.j2"
+[[ -f "$file" ]] || file="schematic.yaml.j2"
 schematic="$(mise run //:template "$file")"
 printf '%s\n' "$schematic" | curl -fsSX POST --data-binary @- "https://factory.talos.dev/schematics" | jq -er '.id'
 '''
