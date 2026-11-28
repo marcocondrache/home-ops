@@ -16,17 +16,6 @@ spec:
     controllers:
       sabnzbd:
         type: statefulset
-        statefulset:
-          podManagementPolicy: Parallel
-          volumeClaimTemplates:
-            - name: config
-              accessMode: ReadWriteOnce
-              size: 5Gi
-              storageClass: ceph-block
-              dataSourceRef:
-                apiGroup: kopiur.home-operations.com
-                kind: Restore
-                name: "{{ .Release.Name }}"
         containers:
           app:
             image:
@@ -68,6 +57,17 @@ spec:
                 cpu: 100m
               limits:
                 memory: 8Gi
+        statefulset:
+          podManagementPolicy: Parallel
+          volumeClaimTemplates:
+            - name: config
+              accessMode: ReadWriteOnce
+              size: 5Gi
+              storageClass: ceph-block
+              dataSourceRef:
+                apiGroup: kopiur.home-operations.com
+                kind: Restore
+                name: "{{ .Release.Name }}"
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true

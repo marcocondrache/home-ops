@@ -18,19 +18,6 @@ spec:
         type: statefulset
         annotations:
           reloader.stakater.com/auto: "true"
-        statefulset:
-          podManagementPolicy: Parallel
-          volumeClaimTemplates:
-            - name: config
-              accessMode: ReadWriteOnce
-              size: 5Gi
-              storageClass: ceph-block
-              dataSourceRef:
-                apiGroup: kopiur.home-operations.com
-                kind: Restore
-                name: "{{ .Release.Name }}"
-              globalMounts:
-                - path: /app/config
         containers:
           app:
             image:
@@ -68,6 +55,19 @@ spec:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
+        statefulset:
+          podManagementPolicy: Parallel
+          volumeClaimTemplates:
+            - name: config
+              accessMode: ReadWriteOnce
+              size: 5Gi
+              storageClass: ceph-block
+              dataSourceRef:
+                apiGroup: kopiur.home-operations.com
+                kind: Restore
+                name: "{{ .Release.Name }}"
+              globalMounts:
+                - path: /app/config
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
