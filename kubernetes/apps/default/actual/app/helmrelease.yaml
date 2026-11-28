@@ -15,6 +15,7 @@ spec:
   values:
     controllers:
       actual:
+        type: statefulset
         containers:
           app:
             image:
@@ -53,6 +54,19 @@ spec:
                 cpu: 10m
               limits:
                 memory: 512Mi
+        statefulset:
+          podManagementPolicy: Parallel
+          volumeClaimTemplates:
+            - name: config
+              accessMode: ReadWriteOnce
+              size: 5Gi
+              storageClass: ceph-block
+              dataSourceRef:
+                apiGroup: kopiur.home-operations.com
+                kind: Restore
+                name: "{{ .Release.Name }}"
+              globalMounts:
+                - path: /data
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
@@ -73,7 +87,5 @@ spec:
           - name: envoy-internal
             namespace: network
     persistence:
-      data:
-        existingClaim: "{{ .Release.Name }}"
       tmp:
         type: emptyDir
