@@ -15,6 +15,7 @@ spec:
   values:
     controllers:
       pocket-id:
+        type: statefulset
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
@@ -69,6 +70,19 @@ spec:
                 cpu: 10m
               limits:
                 memory: 256Mi
+        statefulset:
+          podManagementPolicy: Parallel
+          volumeClaimTemplates:
+            - name: config
+              accessMode: ReadWriteOnce
+              size: 1Gi
+              storageClass: ceph-block
+              dataSourceRef:
+                apiGroup: kopiur.home-operations.com
+                kind: Restore
+                name: "{{ .Release.Name }}"
+              globalMounts:
+                - path: /app/data
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
@@ -92,9 +106,5 @@ spec:
           - name: envoy-external
             namespace: network
     persistence:
-      data:
-        existingClaim: "{{ .Release.Name }}"
-        globalMounts:
-          - path: /app/data
       tmp:
         type: emptyDir

@@ -15,6 +15,7 @@ spec:
   values:
     controllers:
       papra:
+        type: statefulset
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
@@ -59,6 +60,19 @@ spec:
                 cpu: 25m
               limits:
                 memory: 512Mi
+        statefulset:
+          podManagementPolicy: Parallel
+          volumeClaimTemplates:
+            - name: config
+              accessMode: ReadWriteOnce
+              size: 20Gi
+              storageClass: ceph-block
+              dataSourceRef:
+                apiGroup: kopiur.home-operations.com
+                kind: Restore
+                name: "{{ .Release.Name }}"
+              globalMounts:
+                - path: /app/app-data
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
@@ -79,8 +93,3 @@ spec:
         parentRefs:
           - name: envoy-internal
             namespace: network
-    persistence:
-      data:
-        existingClaim: "{{ .Release.Name }}"
-        globalMounts:
-          - path: /app/app-data
