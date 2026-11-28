@@ -5,9 +5,12 @@ kind: HelmRelease
 metadata:
   name: recyclarr
 spec:
-  chartRef:
+  chart:
     kind: OCIRepository
-    name: recyclarr
+    spec:
+      url: oci://ghcr.io/recyclarr/charts/recyclarr
+      ref:
+        tag: 9.0.0
   interval: 1h
   values:
     apiKey:
