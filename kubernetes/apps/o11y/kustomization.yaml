@@ -13,7 +13,7 @@ resources:
   - ./gatus-sidecar/ks.yaml
   - ./grafana-operator/ks.yaml
   - ./prometheus-adapter/ks.yaml
+  - ./prometheus-operator-crds/ks.yaml
   - ./silence-operator/ks.yaml
   - ./smartctl-exporter/ks.yaml
-  - ./victoria-logs/ks.yaml
-  - ./kube-prometheus-stack/ks.yaml
+  - ./victoria-metrics/ks.yaml
