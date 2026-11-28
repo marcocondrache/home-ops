@@ -1,0 +1,35 @@
+---
+apiVersion: kagent.dev/v1alpha1
+kind: MCPServer
+metadata:
+  name: unifi-mcp
+spec:
+  transportType: http
+  httpTransport:
+    targetPort: 3000
+    path: /mcp
+  deployment:
+    image: ghcr.io/sirkirby/unifi-network-mcp:0.53.0@sha256:84c4221880d97d05a989b341a6f733d17f001a0451a049f03587855ff59e5787
+    port: 3000
+    env:
+      TZ: Europe/Rome
+      UNIFI_HOST: unifi.network.internal
+      UNIFI_MCP_ALLOWED_HOSTS: localhost,127.0.0.1,unifi-mcp.default.svc.cluster.local,unifi-mcp.default.svc.cluster.local:3000
+      UNIFI_MCP_HOST: 0.0.0.0
+      UNIFI_MCP_HTTP_ENABLED: "true"
+      UNIFI_NETWORK_WEBSOCKET_ENABLED: "false"
+    secretRefs:
+      - name: unifi-mcp-secret
+    securityContext:
+      allowPrivilegeEscalation: false
+      readOnlyRootFilesystem: true
+      capabilities: { drop: ["ALL"] }
+    resources:
+      requests:
+        cpu: 10m
+      limits:
+        memory: 512Mi
+    podSecurityContext:
+      runAsNonRoot: true
+      runAsUser: 1000
+      runAsGroup: 1000

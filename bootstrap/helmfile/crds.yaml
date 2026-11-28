@@ -32,6 +32,11 @@ releases:
   - name: grafana-operator
     namespace: o11y
 
+  # Version follows the controller OCIRepository; only the chart differs
+  - name: kmcp
+    namespace: kmcp-system
+    chart: oci://ghcr.io/kagent-dev/kmcp/helm/kmcp-crds
+
   - name: kopiur
     namespace: kopiur-system
 

@@ -5,6 +5,9 @@ kind: Kustomization
 metadata:
   name: unifi-mcp
 spec:
+  dependsOn:
+    - name: kmcp
+      namespace: kmcp-system
   interval: 1h
   path: ./kubernetes/apps/default/unifi-mcp/app
   prune: true
