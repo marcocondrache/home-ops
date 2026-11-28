@@ -15,6 +15,7 @@ spec:
   values:
     controllers:
       radarr:
+        type: statefulset
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
@@ -64,6 +65,17 @@ spec:
                 cpu: 100m
               limits:
                 memory: 512Mi
+        statefulset:
+          podManagementPolicy: Parallel
+          volumeClaimTemplates:
+            - name: config
+              accessMode: ReadWriteOnce
+              size: 10Gi
+              storageClass: ceph-block
+              dataSourceRef:
+                apiGroup: kopiur.home-operations.com
+                kind: Restore
+                name: "{{ .Release.Name }}"
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
@@ -84,8 +96,6 @@ spec:
           - name: envoy-internal
             namespace: network
     persistence:
-      config:
-        existingClaim: "{{ .Release.Name }}"
       media:
         type: nfs
         server: nas.labx.internal

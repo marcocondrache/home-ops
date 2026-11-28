@@ -15,6 +15,7 @@ spec:
   values:
     controllers:
       plex:
+        type: statefulset
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
@@ -58,6 +59,17 @@ spec:
                 cpu: 100m
               limits:
                 memory: 8Gi
+        statefulset:
+          podManagementPolicy: Parallel
+          volumeClaimTemplates:
+            - name: config
+              accessMode: ReadWriteOnce
+              size: 50Gi
+              storageClass: ceph-block
+              dataSourceRef:
+                apiGroup: kopiur.home-operations.com
+                kind: Restore
+                name: "{{ .Release.Name }}"
     defaultPodOptions:
       resourceClaims:
         - name: gpu
@@ -121,8 +133,6 @@ spec:
               - path:
                   value: /library/streams
     persistence:
-      config:
-        existingClaim: "{{ .Release.Name }}"
       media:
         type: nfs
         server: nas.labx.internal

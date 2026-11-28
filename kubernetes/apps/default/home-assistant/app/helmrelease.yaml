@@ -15,6 +15,7 @@ spec:
   values:
     controllers:
       home-assistant:
+        type: statefulset
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
@@ -37,6 +38,17 @@ spec:
                 cpu: 10m
               limits:
                 memory: 2Gi
+        statefulset:
+          podManagementPolicy: Parallel
+          volumeClaimTemplates:
+            - name: config
+              accessMode: ReadWriteOnce
+              size: 5Gi
+              storageClass: ceph-block
+              dataSourceRef:
+                apiGroup: kopiur.home-operations.com
+                kind: Restore
+                name: "{{ .Release.Name }}"
     defaultPodOptions:
       annotations:
         k8s.v1.cni.cncf.io/networks: |-
@@ -74,8 +86,6 @@ spec:
           - name: envoy-external
             namespace: network
     persistence:
-      config:
-        existingClaim: "{{ .Release.Name }}"
       config-cache:
         existingClaim: "{{ .Release.Name }}-cache"
         globalMounts:
