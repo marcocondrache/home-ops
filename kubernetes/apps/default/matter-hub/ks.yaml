@@ -1,0 +1,23 @@
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: matter-hub
+spec:
+  components:
+    - ../../../../components/kopiur/statefulset
+  dependsOn:
+    - name: multus-networks
+      namespace: kube-system
+  interval: 1h
+  path: ./kubernetes/apps/default/matter-hub/app
+  postBuild:
+    substitute:
+      APP: matter-hub
+  prune: true
+  sourceRef:
+    kind: ExternalArtifact
+    name: matter-hub
+    namespace: flux-system
+  targetNamespace: default
